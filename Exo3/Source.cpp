@@ -1,6 +1,5 @@
 #include <iostream>
 #include <stdlib.h> 
-#include <cmath>
 using namespace std;
 
 bool isPosition1Superieure = false;
@@ -21,7 +20,7 @@ void avancerSimulation1Seconde(int& temps, int& position1, int& position2, const
 
 
 int main(int argc, char const* argv[]) {
-    const int tempsTotal = readNumber("Entrez le temps total :", 0, INFINITY);
+    const int tempsTotal = readNumber("Entrez le temps total :", 0, int(INFINITY));
     int temps = 0;
 
     const int positionInitiale1 = readNumber("Entrez la postition initiale du premier train :", -1000, 1000);
@@ -66,7 +65,7 @@ int readNumber(string text, int min, int max) {
     do {
         cout << text;
         cin >> nb;
-    } while (!(nb >= min & nb <= max));
+    } while (nb < min || nb > max);
 
     return nb;
 }

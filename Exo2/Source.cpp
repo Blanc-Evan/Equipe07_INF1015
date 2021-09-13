@@ -43,7 +43,7 @@ int readNumber(string text, int min, int max) {
         nbTentative++;
         cout << text;
         cin >> nb;
-    } while (!(nb >= min & nb <= max));
+    } while (nb < min || nb > max);
 
     return nb;
 }
