@@ -37,45 +37,16 @@ void readTab(int tab[]) {
 
 void trierTab(int tab[]) {
 
-
-    int min = tab[0];
     int indiceMin = 0;
-    int temp;
-    int j;
+    int i, j, temp;
 
-
-
-    for (int i = 0; i < TAILLE; i++) {
-        j = i;
-        for (int k = j; k < TAILLE; k++) {
-            if (tab[k] < tab[j])
-                j = k;
-
-            temp = tab[j];
-            tab[j] = tab[i];
-            tab[i] = temp;
-
-        }
-
+    for (i = 0; i < TAILLE - 1; i++) {
+        indiceMin = i;
+        for (j = i + 1; j < TAILLE; j++)
+            if (tab[j] < tab[indiceMin])
+                indiceMin = j;
+        temp = tab[i];
+        tab[i] = tab[indiceMin];
+        tab[indiceMin] = temp;
     }
-
-
-
-
-    //do {
-        //for (int i = borneInf; i < TAILLE; i++) {
-
-            //if (tab[i] < min) {
-                // min = tab[i];
-                // indiceMin = i;
-            //}
-        //}
-
-        //temp = tab[borneInf];
-        //tab[borneInf] = tab[indiceMin];
-        //tab[indiceMin] = temp;
-
-        //borneInf++;
-        //min = tab[borneInf];
-    //} while (borneInf != TAILLE);
-//
+}
