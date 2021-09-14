@@ -14,8 +14,8 @@ struct Aliment {
 
 	string nom;
 	string type;
-	unsigned int quantite = 0;
-	float prix = 0;
+	unsigned int quantite;
+	float prix;
 };
 
 void afficherAlimentLePlusCher(vector<Aliment> inventaire);
@@ -25,28 +25,32 @@ int main(int argc, char const* argv[]) {
 	vector<Aliment> inventaire;
 	int i = 0;
 	ifstream file(FILENAME);
-	if (file.is_open()) {	// Read File
+
+	if (file.is_open()) {
 		string line;
-		while (getline(file, line)) {
+		while (getline(file, line) || i >= 10) {
+
+			line.erase(remove(line.begin(), line.end(), ' '), line.end());
 
 			istringstream str(line);
 			Aliment a;
+
 			str >> a.nom >> a.type >> a.quantite >> a.prix;
-			inventaire[i] = a;
+
+			inventaire.push_back(a);
 			i++;
 		}
+		file.close();
 		afficherAlimentLePlusCher(inventaire);
 	}
 	else {
 		cout << "Exception: File not found";
 	}
-
-
 }
 
 void afficherAlimentLePlusCher(vector<Aliment> inventaire) {
 
-	Aliment &lePlusCher = inventaire[0];
+	Aliment lePlusCher = inventaire[0];
 
 	for (int i = 1; i < inventaire.size()-1; i++) 
 		if (inventaire[i].prix > lePlusCher.prix)
@@ -57,7 +61,7 @@ void afficherAlimentLePlusCher(vector<Aliment> inventaire) {
 			<< lePlusCher.nom
 			<< " (" 
 			<< lePlusCher.type
-			<< ""
+			<< ") "
 			<< lePlusCher.prix
 			<< "$ chacun";
 }
