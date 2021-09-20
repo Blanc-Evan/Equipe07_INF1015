@@ -10,7 +10,7 @@ void trierTab(int tab[]);
 const int TAILLE = 10;
 
 
-int main(int argc, char const* argv[]) {
+int main() {
 
     int tab[TAILLE];
 

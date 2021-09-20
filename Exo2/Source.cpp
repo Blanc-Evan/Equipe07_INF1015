@@ -14,7 +14,7 @@ const int MAX = 1000;
 */
 int readNumber(string text, int min, int max);
 
-int main(int argc, char const* argv[]) {
+int main() {
 
     int nb;
 

@@ -4,7 +4,7 @@ using namespace std;
 
 bool isPremier(int nb);
 
-int main(int argc, char const* argv[]) {
+int main() {
     while (true) {
 
         int nb = 0;

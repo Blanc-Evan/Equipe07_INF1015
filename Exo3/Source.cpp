@@ -19,7 +19,8 @@ int readNumber(string text, int min, int max);
 void avancerSimulation1Seconde(int& temps, int& position1, int& position2, const int& vitesse1, const int& vitesse2);
 
 
-int main(int argc, char const* argv[]) {
+int main() {
+
     const int tempsTotal = readNumber("Entrez le temps total :", 0, int(INFINITY));
     int temps = 0;
 
