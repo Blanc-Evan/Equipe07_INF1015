@@ -46,7 +46,25 @@ gsl::span<Designer*> spanListeDesigners(const ListeDesigners& liste)
 //TODO: Fonction qui cherche un designer par son nom dans une ListeJeux.
 // Cette fonction renvoie le pointeur vers le designer si elle le trouve dans
 // un des jeux de la ListeJeux. En cas contraire, elle renvoie un pointeur nul.
+Designer* trouverDesigner(ListeJeux& list, string name) {
 
+	for (auto i : range(list.nElements)) {  
+	
+		for (auto j : range(list.elements[i]->designers)) {
+
+			for (auto k : range(j.nElements)) {
+			
+				for (auto l : range(j.elements[k])) {
+
+					if (l->nom == name) {
+						return j.elements[k];
+					}
+				}
+			}
+		}
+	}
+	return nullptr;
+}
 
 Designer* lireDesigner(istream& fichier)
 {
