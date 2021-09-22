@@ -72,12 +72,32 @@ Designer* lireDesigner(istream& fichier)
 // tableau. Il faut allouer un nouveau tableau assez grand, copier ce qu'il y
 // avait dans l'ancien, et éliminer l'ancien trop petit. N'oubliez pas, on copie
 // des pointeurs de jeux. Il n'y a donc aucune nouvelle allocation de jeu ici !
+void augmenterTaille(ListeJeux& list) {
+
+	list.capacite *= 2;
+	Jeu** temp = new Jeu*[list.capacite];
+
+	for (auto i : range(list.nElements)) {
+		temp[i] = list.elements[i];
+		delete[] list.elements[i];
+	}
+
+	list.elements = temp;
+}
 
 //TODO: Fonction pour ajouter un Jeu à ListeJeux.
 // Le jeu existant déjà en mémoire, on veut uniquement ajouter le pointeur vers
 // le jeu existant. De plus, en cas de saturation du tableau elements, cette
 // fonction doit doubler la taille du tableau elements de ListeJeux.
 // Utilisez la fonction pour changer la taille du tableau écrite plus haut.
+void ajouterJeu(ListeJeux& list, Jeu& game) {
+
+	if ((list.capacite - list.nElements) <= 1) { 
+		augmenterTaille(list);
+	}
+
+	list.elements[list.nElements] = &game;
+}
 
 //TODO: Fonction qui enlève un jeu de ListeJeux.
 // Attention, ici il n'a pas de désallocation de mémoire. Elle enlève le
@@ -85,6 +105,18 @@ Designer* lireDesigner(istream& fichier)
 // Puisque l'ordre de la ListeJeux n'a pas être conservé, on peut remplacer le
 // jeu à être retiré par celui présent en fin de liste et décrémenter la taille
 // de celle-ci.
+void enleverJeu(ListeJeux& list, Jeu& game) {
+
+	for (auto j : range(list.nElements)) {
+		
+		if (list.elements[j] == &game) {
+			delete[] list.elements[j];
+			list.elements[j] = list.elements[list.nElements];
+			delete[] list.elements[list.nElements];
+			list.nElements--;
+		}
+	}
+}
 
 Jeu* lireJeu(istream& fichier)
 {
