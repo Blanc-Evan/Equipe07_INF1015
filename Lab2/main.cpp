@@ -49,13 +49,9 @@ gsl::span<Designer*> spanListeDesigners(const ListeDesigners& liste)
 Designer* trouverDesigner(ListeJeux& list, string name) {
 
 	for (auto i : range(list.nElements)) {  
-	
 		for (auto j : range(list.elements[i]->designers)) {
-
-			for (auto k : range(j.nElements)) {
-			
+			for (auto k : range(j.nElements)) {			
 				for (auto l : range(j.elements[k])) {
-
 					if (l->nom == name) {
 						return j.elements[k];
 					}
@@ -66,7 +62,7 @@ Designer* trouverDesigner(ListeJeux& list, string name) {
 	return nullptr;
 }
 
-Designer* lireDesigner(istream& fichier)
+Designer* lireDesigner(istream& fichier, ListeJeux& list)
 {
 	Designer designer = {}; // On initialise une structure vide de type Designer.
 	designer.nom = lireString(fichier);
@@ -81,8 +77,20 @@ Designer* lireDesigner(istream& fichier)
 	// dans le fichier binaire. Pour ce faire, cette fonction aura besoin de
 	// la liste de jeux principale en paramètre.
 	// Afficher un message lorsque l'allocation du designer est réussie.
-	cout << designer.nom << endl;  //TODO: Enlever cet affichage temporaire servant à voir que le code fourni lit bien les jeux.
-	return {}; //TODO: Retourner le pointeur vers le designer crée.
+
+	Designer* ptr_designer = trouverDesigner(list, designer.nom);
+
+	if (ptr_designer != nullptr) {
+		if (ptr_designer->anneeNaissance != designer.anneeNaissance) {
+			if (ptr_designer->pays != designer.pays) {			
+				return &designer;
+			}
+		}
+	} else {
+		cout << designer.nom << endl;  //TODO: Enlever cet affichage temporaire servant à voir que le code fourni lit bien les jeux.
+		return &designer; //TODO: Retourner le pointeur vers le designer crée.
+	}
+	return nullptr;
 }
 
 //TODO: Fonction qui change la taille du tableau de jeux de ListeJeux.
@@ -91,15 +99,12 @@ Designer* lireDesigner(istream& fichier)
 // avait dans l'ancien, et éliminer l'ancien trop petit. N'oubliez pas, on copie
 // des pointeurs de jeux. Il n'y a donc aucune nouvelle allocation de jeu ici !
 void augmenterTaille(ListeJeux& list) {
-
 	list.capacite *= 2;
 	Jeu** temp = new Jeu*[list.capacite];
-
 	for (auto i : range(list.nElements)) {
 		temp[i] = list.elements[i];
 		delete[] list.elements[i];
 	}
-
 	list.elements = temp;
 }
 
@@ -109,11 +114,9 @@ void augmenterTaille(ListeJeux& list) {
 // fonction doit doubler la taille du tableau elements de ListeJeux.
 // Utilisez la fonction pour changer la taille du tableau écrite plus haut.
 void ajouterJeu(ListeJeux& list, Jeu& game) {
-
 	if ((list.capacite - list.nElements) <= 1) { 
 		augmenterTaille(list);
 	}
-
 	list.elements[list.nElements] = &game;
 }
 
@@ -124,9 +127,7 @@ void ajouterJeu(ListeJeux& list, Jeu& game) {
 // jeu à être retiré par celui présent en fin de liste et décrémenter la taille
 // de celle-ci.
 void enleverJeu(ListeJeux& list, Jeu& game) {
-
 	for (auto j : range(list.nElements)) {
-		
 		if (list.elements[j] == &game) {
 			delete[] list.elements[j];
 			list.elements[j] = list.elements[list.nElements];
@@ -175,6 +176,10 @@ ListeJeux creerListeJeux(const string& nomFichier)
 
 //TODO: Fonction pour détruire un designer (libération de mémoire allouée).
 // Lorsqu'on détruit un designer, on affiche son nom pour fins de débogage.
+void deleteDesigner(Designer& designeur) {
+
+
+}
 
 //TODO: Fonction qui détermine si un designer participe encore à un jeu.
 
@@ -187,6 +192,7 @@ ListeJeux creerListeJeux(const string& nomFichier)
 // fins de débogage, affichez le nom du jeu lors de sa destruction.
 
 //TODO: Fonction pour détruire une ListeJeux et tous ses jeux.
+
 
 void afficherDesigner(const Designer& d)
 {

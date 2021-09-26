@@ -1,0 +1,7 @@
+﻿  bibliotheque_cours.cpp
+C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab2\bibliotheque_cours\bibliotheque_cours.cpp(74,119): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  verification_allocation.cpp
+  main.cpp
+C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab2\main.cpp(160,23): error C2660: 'lireDesigner': function does not take 1 arguments
+C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab2\main.cpp(65,11): message : see declaration of 'lireDesigner'
+  Generating Code...
