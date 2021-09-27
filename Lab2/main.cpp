@@ -81,14 +81,11 @@ Designer* lireDesigner(istream& fichier, ListeJeux& list)
 	Designer* ptr_designer = trouverDesigner(list, designer.nom);
 
 	if (ptr_designer != nullptr) {
-		if (ptr_designer->anneeNaissance != designer.anneeNaissance) {
-			if (ptr_designer->pays != designer.pays) {			
-				return &designer;
-			}
-		}
-	} else {
-		cout << designer.nom << endl;  //TODO: Enlever cet affichage temporaire servant à voir que le code fourni lit bien les jeux.
-		return &designer; //TODO: Retourner le pointeur vers le designer crée.
+		Designer* d = new Designer();
+		d->nom = designer.nom;
+		d->anneeNaissance = designer.anneeNaissance;
+		d->pays = designer.pays;
+		return d;
 	}
 	return nullptr;
 }
@@ -99,6 +96,7 @@ Designer* lireDesigner(istream& fichier, ListeJeux& list)
 // avait dans l'ancien, et éliminer l'ancien trop petit. N'oubliez pas, on copie
 // des pointeurs de jeux. Il n'y a donc aucune nouvelle allocation de jeu ici !
 void augmenterTaille(ListeJeux& list) {
+
 	list.capacite *= 2;
 	Jeu** temp = new Jeu*[list.capacite];
 	for (auto i : range(list.nElements)) {
@@ -114,6 +112,7 @@ void augmenterTaille(ListeJeux& list) {
 // fonction doit doubler la taille du tableau elements de ListeJeux.
 // Utilisez la fonction pour changer la taille du tableau écrite plus haut.
 void ajouterJeu(ListeJeux& list, Jeu& game) {
+
 	if ((list.capacite - list.nElements) <= 1) { 
 		augmenterTaille(list);
 	}
@@ -127,6 +126,7 @@ void ajouterJeu(ListeJeux& list, Jeu& game) {
 // jeu à être retiré par celui présent en fin de liste et décrémenter la taille
 // de celle-ci.
 void enleverJeu(ListeJeux& list, Jeu& game) {
+
 	for (auto j : range(list.nElements)) {
 		if (list.elements[j] == &game) {
 			delete[] list.elements[j];
@@ -137,7 +137,7 @@ void enleverJeu(ListeJeux& list, Jeu& game) {
 	}
 }
 
-Jeu* lireJeu(istream& fichier)
+Jeu* lireJeu(istream& fichier, ListeJeux& list)
 {
 	Jeu jeu = {}; // On initialise une structure vide de type Jeu
 	jeu.titre = lireString(fichier);
@@ -182,7 +182,7 @@ void deleteDesigner(Designer& designeur) {
 }
 
 //TODO: Fonction qui détermine si un designer participe encore à un jeu.
-
+v
 //TODO: Fonction pour détruire un jeu (libération de mémoire allouée).
 // Attention, ici il faut relâcher toute les cases mémoires occupées par un jeu.
 // Par conséquent, il va falloir gérer le cas des designers (un jeu contenant
