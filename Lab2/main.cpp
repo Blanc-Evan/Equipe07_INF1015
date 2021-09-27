@@ -113,12 +113,12 @@ void augmenterTaille(ListeJeux& list) {
 // le jeu existant. De plus, en cas de saturation du tableau elements, cette
 // fonction doit doubler la taille du tableau elements de ListeJeux.
 // Utilisez la fonction pour changer la taille du tableau écrite plus haut.
-void ajouterJeu(ListeJeux& list, Jeu& game) {
+void ajouterJeu(ListeJeux& list, Jeu* game) {
 
 	if ((list.capacite - list.nElements) <= 1) { 
 		augmenterTaille(list);
 	}
-	list.elements[list.nElements] = &game;
+	list.elements[list.nElements] = game;
 }
 
 //TODO: Fonction qui enlève un jeu de ListeJeux.
@@ -148,18 +148,28 @@ Jeu* lireJeu(istream& fichier, ListeJeux& list)
 	jeu.designers.nElements = lireUint8(fichier);
 	// Rendu ici, les champs précédents de la structure jeu sont remplis avec la
 	// bonne information.
+	jeu.designers.elements = new Designer*;
 
 	//TODO: Ajouter en mémoire le jeu lu. Il faut revoyer le pointeur créé.
 	// Attention, il faut aussi créer un tableau dynamique pour les designers
 	// que contient un jeu. Servez-vous de votre fonction d'ajout de jeu car la
 	// liste de jeux participé est une ListeJeu. Afficher un message lorsque
 	// l'allocation du jeu est réussie.
+	Jeu* jeuToReturn = new Jeu();
+	jeuToReturn->titre = jeu.titre;
+	jeuToReturn->anneeSortie = jeu.anneeSortie;
+	jeuToReturn->developpeur = jeu.developpeur;
+	jeuToReturn->designers.nElements = jeu.designers.nElements;
 	cout << jeu.titre << endl;  //TODO: Enlever cet affichage temporaire servant à voir que le code fourni lit bien les jeux.
-	for ([[maybe_unused]] int i : iter::range(jeu.designers.nElements)) {
-		lireDesigner(fichier);  //TODO: Mettre le designer dans la liste des designer du jeu.
+
+	for (int i : iter::range(jeu.designers.nElements)) {
+		//TODO: Mettre le designer dans la liste des designer du jeu.
+		jeu.designers.elements[i] = lireDesigner(fichier, list);
 		//TODO: Ajouter le jeu à la liste des jeux auquel a participé le designer.
+
+		ajouterJeu(jeuToReturn->designers.elements[i]->listeJeuxParticipes, jeuToReturn);
 	}
-	return {}; //TODO: Retourner le pointeur vers le nouveau jeu.
+	return jeuToReturn; //TODO: Retourner le pointeur vers le nouveau jeu.
 }
 
 ListeJeux creerListeJeux(const string& nomFichier)
@@ -170,7 +180,7 @@ ListeJeux creerListeJeux(const string& nomFichier)
 	ListeJeux listeJeux = {};
 	for([[maybe_unused]] int n : iter::range(nElements))
 	{
-		lireJeu(fichier); //TODO: Ajouter le jeu à la ListeJeux.
+		lireJeu(fichier, listeJeux); //TODO: Ajouter le jeu à la ListeJeux.
 	}
 
 	return {}; //TODO: Renvoyer la ListeJeux.
@@ -184,7 +194,6 @@ void deleteDesigner(Designer& designeur) {
 }
 
 //TODO: Fonction qui détermine si un designer participe encore à un jeu.
-v
 //TODO: Fonction pour détruire un jeu (libération de mémoire allouée).
 // Attention, ici il faut relâcher toute les cases mémoires occupées par un jeu.
 // Par conséquent, il va falloir gérer le cas des designers (un jeu contenant
