@@ -178,12 +178,15 @@ ListeJeux creerListeJeux(const string& nomFichier)
 	fichier.exceptions(ios::failbit);
 	int nElements = lireUint16(fichier);
 	ListeJeux listeJeux = {};
-	for([[maybe_unused]] int n : iter::range(nElements))
+
+	listeJeux.nElements = nElements;
+	listeJeux.capacite = nElements + 1;
+	for(int n : iter::range(nElements))
 	{
-		lireJeu(fichier, listeJeux); //TODO: Ajouter le jeu à la ListeJeux.
+		listeJeux.elements[n] = lireJeu(fichier, listeJeux); //TODO: Ajouter le jeu à la ListeJeux.
 	}
 
-	return {}; //TODO: Renvoyer la ListeJeux.
+	return listeJeux; //TODO: Renvoyer la ListeJeux.
 }
 
 //TODO: Fonction pour détruire un designer (libération de mémoire allouée).
@@ -194,6 +197,11 @@ void deleteDesigner(Designer& designeur) {
 }
 
 //TODO: Fonction qui détermine si un designer participe encore à un jeu.
+bool isParticipating(Designer* designer) {
+
+	return designer->listeJeuxParticipes.nElements == 0;
+}
+
 //TODO: Fonction pour détruire un jeu (libération de mémoire allouée).
 // Attention, ici il faut relâcher toute les cases mémoires occupées par un jeu.
 // Par conséquent, il va falloir gérer le cas des designers (un jeu contenant
@@ -201,6 +209,9 @@ void deleteDesigner(Designer& designeur) {
 // qu'un designer a participé (listeJeuxParticipes). Si le designer n'a plus de
 // jeux présents dans sa liste de jeux participés, il faut le supprimer.  Pour
 // fins de débogage, affichez le nom du jeu lors de sa destruction.
+void deleteGame() {
+
+}
 
 //TODO: Fonction pour détruire une ListeJeux et tous ses jeux.
 
