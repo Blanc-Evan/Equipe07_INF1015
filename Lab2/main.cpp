@@ -85,6 +85,8 @@ Designer* lireDesigner(istream& fichier, ListeJeux& list)
 		d->nom = designer.nom;
 		d->anneeNaissance = designer.anneeNaissance;
 		d->pays = designer.pays;
+
+		cout << "Allocation réussie ! \n";
 		return d;
 	}
 	return nullptr;
