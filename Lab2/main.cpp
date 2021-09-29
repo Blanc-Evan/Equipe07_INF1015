@@ -235,19 +235,32 @@ void deleteCollection(ListeJeux& list) {
 	delete& list.elements;
 }
 
-void afficherDesigner(const Designer& d)
+void afficherDesigner(const Designer* d)
 {
-	cout << "\t" << d.nom << ", " << d.anneeNaissance << ", " << d.pays
+	cout << "\t" << d->nom << ", " << d->anneeNaissance << ", " << d->pays
 			  << endl;
 }
 
 //TODO: Fonction pour afficher les infos d'un jeu ainsi que ses designers.
 // Servez-vous de la fonction afficherDesigner ci-dessus.
+void afficherJeu(Jeu* jeu) {
+
+	cout << "\t" << jeu->titre << ", " << jeu->anneeSortie << ", " << jeu->developpeur;
+
+	for (int i : iter::range(jeu->designers.nElements)) {
+		afficherDesigner(jeu->designers.elements[i]);
+	}
+}
 
 //TODO: Fonction pour afficher tous les jeux de ListeJeux, séparés par un ligne.
 // Servez-vous de la fonction d'affichage d'un jeu crée ci-dessus. Votre ligne
 // de séparation doit être différent de celle utilisée dans le main.
+void afficherJeu(ListeJeux& list) {
 
+	for (int i : iter::range(list.nElements)) {
+		afficherJeu(list.elements[i]);
+	}
+}
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv)
 {
