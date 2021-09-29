@@ -127,13 +127,12 @@ void ajouterJeu(ListeJeux& list, Jeu* game) {
 // Puisque l'ordre de la ListeJeux n'a pas être conservé, on peut remplacer le
 // jeu à être retiré par celui présent en fin de liste et décrémenter la taille
 // de celle-ci.
-void enleverJeu(ListeJeux& list, Jeu& game) {
+void enleverJeu(ListeJeux& list, Jeu* game) {
 
 	for (auto j : range(list.nElements)) {
-		if (list.elements[j] == &game) {
-			delete[] list.elements[j];
+		if (list.elements[j] == game) {
 			list.elements[j] = list.elements[list.nElements];
-			delete[] list.elements[list.nElements];
+			list.elements[list.nElements] = nullptr; // on evite qu'il y ait un trous dans le tableau en le comblant avec le dernier element
 			list.nElements--;
 		}
 	}
@@ -191,14 +190,13 @@ ListeJeux creerListeJeux(const string& nomFichier)
 
 //TODO: Fonction pour détruire un designer (libération de mémoire allouée).
 // Lorsqu'on détruit un designer, on affiche son nom pour fins de débogage.
-void deleteDesigner(Designer& designeur) {
+void deleteDesigner(Designer* designeur) {
 
-	if (! isParticipatingToAGame(&designeur)) {
-		cout << designeur.nom;
-		delete& designeur.listeJeuxParticipes.elements;
-		delete& designeur.listeJeuxParticipes;
+	if (! isParticipatingToAGame(designeur)) {
+		cout << designeur->nom;
+		delete& designeur->listeJeuxParticipes.elements;
+		delete& designeur->listeJeuxParticipes;
 		delete& designeur;
-
 	}
 }
 
@@ -215,12 +213,27 @@ bool isParticipatingToAGame(Designer* designer) {
 // qu'un designer a participé (listeJeuxParticipes). Si le designer n'a plus de
 // jeux présents dans sa liste de jeux participés, il faut le supprimer.  Pour
 // fins de débogage, affichez le nom du jeu lors de sa destruction.
-void deleteGame() {
+void deleteGame(Jeu* game) {
 
+	for (int i : iter::range(game->designers.nElements)) { // Tous les designeurs de ce jeu
+		enleverJeu(game->designers.elements[i]->listeJeuxParticipes, game);
+		deleteDesigner(game->designers.elements[i]);
+	}
+
+	cout << game->titre;
+	delete& game->designers;
+	delete& game;
 }
 
 //TODO: Fonction pour détruire une ListeJeux et tous ses jeux.
+void deleteCollection(ListeJeux& list) {
 
+	for (int i : iter::range(list.nElements)) {
+		deleteGame(list.elements[i]);
+	}
+
+	delete& list.elements;
+}
 
 void afficherDesigner(const Designer& d)
 {
