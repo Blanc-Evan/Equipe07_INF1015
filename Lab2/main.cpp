@@ -193,7 +193,8 @@ ListeJeux creerListeJeux(const string& nomFichier)
 // Lorsqu'on détruit un designer, on affiche son nom pour fins de débogage.
 void deleteDesigner(Designer& designeur) {
 
-
+	cout << designeur.nom;
+	delete &designeur;
 }
 
 //TODO: Fonction qui détermine si un designer participe encore à un jeu.
