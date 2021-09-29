@@ -193,14 +193,19 @@ ListeJeux creerListeJeux(const string& nomFichier)
 // Lorsqu'on détruit un designer, on affiche son nom pour fins de débogage.
 void deleteDesigner(Designer& designeur) {
 
-	cout << designeur.nom;
-	delete &designeur;
+	if (! isParticipatingToAGame(&designeur)) {
+		cout << designeur.nom;
+		delete& designeur.listeJeuxParticipes.elements;
+		delete& designeur.listeJeuxParticipes;
+		delete& designeur;
+
+	}
 }
 
 //TODO: Fonction qui détermine si un designer participe encore à un jeu.
-bool isParticipating(Designer* designer) {
+bool isParticipatingToAGame(Designer* designer) {
 
-	return designer->listeJeuxParticipes.nElements == 0;
+	return designer->listeJeuxParticipes.nElements != 0;
 }
 
 //TODO: Fonction pour détruire un jeu (libération de mémoire allouée).
