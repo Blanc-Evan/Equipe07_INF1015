@@ -2,6 +2,7 @@
 #include <string>
 #include "ListeJeux.hpp"
 #include "Jeu.hpp"
+#include <iostream>
 #include "cppitertools/range.hpp"
 using namespace std;
 
@@ -88,6 +89,10 @@ private:
 
 	void printGames() const {
 
-
+		for (int i : iter::range(this->paireNomJeux_.second.nElements)) {
+			cout << this->paireNomJeux_.second.elements[i]->titre + "\n";
+		}
 	}
+
+
 };
