@@ -102,15 +102,17 @@ Designer* lireDesigner(istream& fichier, ListeJeux& list)
 // tableau. Il faut allouer un nouveau tableau assez grand, copier ce qu'il y
 // avait dans l'ancien, et éliminer l'ancien trop petit. N'oubliez pas, on copie
 // des pointeurs de jeux. Il n'y a donc aucune nouvelle allocation de jeu ici !
-void augmenterTaille(ListeJeux& list) {
+void augmenterTaille(ListeJeux& list, int newCapacity) {
 
-	list.capacite *= 2;
-	Jeu** temp = new Jeu*[list.capacite];
-	for (auto i : range(list.nElements)) {
-		temp[i] = list.elements[i];
-		delete[] list.elements[i];
+	if (newCapacity != 0) {
+		list.capacite = newCapacity;
+		Jeu** temp = new Jeu * [list.capacite];
+		for (auto i : range(list.nElements)) {
+			temp[i] = list.elements[i];
+			delete[] list.elements[i];
+		}
+		list.elements = temp;
 	}
-	list.elements = temp;
 }
 
 //TODO: Fonction pour ajouter un Jeu à ListeJeux.
@@ -121,7 +123,7 @@ void augmenterTaille(ListeJeux& list) {
 void ajouterJeu(ListeJeux& list, Jeu* game) {
 
 	if ((list.capacite - list.nElements) <= 1) { 
-		augmenterTaille(list);
+		augmenterTaille(list, 1);
 	}
 	list.elements[list.nElements] = game;
 }
