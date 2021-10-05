@@ -14,6 +14,7 @@ class Developpeur
 
 public:
 	Developpeur(const string& nom);
+	~Developpeur();
 	const string& getName() const;
 	const int howManyGamesDidHeParticipatesToInList(const ListeJeux& l) const;
 	void updateListeJeux(ListeJeux& l);
@@ -75,7 +76,7 @@ private:
 
 		if (newCapacity != 0) {
 			l.capacite += newCapacity;
-			Jeu** temp = new Jeu * [l.capacite];
+			Jeu** temp = new Jeu* [l.capacite];
 
 			for (auto i : iter::range(l.nElements)) {
 				temp[i] = l.elements[i];
@@ -94,5 +95,10 @@ private:
 		}
 	}
 
+	~Developpeur() {
 
+		delete[] this->paireNomJeux_.second.elements;
+		this->paireNomJeux_.second.elements = 0;
+		delete &this->paireNomJeux_.second;
+	}
 };
