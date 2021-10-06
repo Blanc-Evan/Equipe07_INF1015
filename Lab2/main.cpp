@@ -49,8 +49,8 @@ gsl::span<Designer*> spanListeDesigners(const ListeDesigners& liste)
 Designer* trouverDesigner(ListeJeux& list, string name) {
 
 	for (int i : range(list.nElements)) {
-		for (int j : range(list.elements[i]->designers.nElements)) {	
-			if (list.elements[i]->designers.elements[j]->nom == name){
+		for (int j : range(list.elements[i]->designers.nElements)) {
+			if (list.elements[i]->designers.elements[j]->nom == name) {
 				return list.elements[i]->designers.elements[j];
 			}
 		}
@@ -122,7 +122,7 @@ void augmenterTaille(ListeJeux& list, int newCapacity) {
 // Utilisez la fonction pour changer la taille du tableau écrite plus haut.
 void ajouterJeu(ListeJeux& list, Jeu* game) {
 
-	if ((list.capacite - list.nElements) <= 1) { 
+	if ((list.capacite - list.nElements) <= 1) {
 		augmenterTaille(list, 1);
 	}
 	list.elements[list.nElements] = game;
@@ -168,8 +168,8 @@ Jeu* lireJeu(istream& fichier)
 	jeuToReturn->anneeSortie = jeu.anneeSortie;
 	jeuToReturn->developpeur = jeu.developpeur;
 	jeuToReturn->designers.nElements = jeu.designers.nElements;
-	jeuToReturn->designers.capacite = jeu.designers.nElements +1 ;
-	
+	jeuToReturn->designers.capacite = jeu.designers.nElements + 1;
+
 	jeuToReturn->designers.elements = new Designer*;
 
 	cout << jeu.titre << endl;  //TODO: Enlever cet affichage temporaire servant à voir que le code fourni lit bien les jeux.
@@ -197,7 +197,7 @@ ListeJeux* creerListeJeux(const string& nomFichier)
 	listToReturn->capacite = nElements + 1;
 	listToReturn->elements = new Jeu*;
 
-	for(int n : iter::range(nElements))
+	for (int n : iter::range(nElements))
 	{
 		listToReturn->elements[n] = lireJeu(fichier); //TODO: Ajouter le jeu à la ListeJeux.
 	}
@@ -216,7 +216,7 @@ bool isParticipatingToAGame(Designer* designer) {
 // Lorsqu'on détruit un designer, on affiche son nom pour fins de débogage.
 void deleteDesigner(Designer* designeur) {
 
-	if (! isParticipatingToAGame(designeur)) {
+	if (!isParticipatingToAGame(designeur)) {
 		cout << designeur->nom;
 		delete[] designeur->listeJeuxParticipes.elements;
 		delete& designeur->listeJeuxParticipes;
@@ -258,7 +258,7 @@ void deleteCollection(ListeJeux& list) {
 void afficherDesigner(const Designer* d)
 {
 	cout << "\t" << d->nom << ", " << d->anneeNaissance << ", " << d->pays
-			  << endl;
+		<< endl;
 }
 
 //TODO: Fonction pour afficher les infos d'un jeu ainsi que ses designers.
@@ -284,12 +284,12 @@ void afficherJeux(ListeJeux& list) {
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv)
 {
-	#pragma region "Bibliothèque du cours"
+#pragma region "Bibliothèque du cours"
 	// Permet sous Windows les "ANSI escape code" pour changer de couleur
 	// https://en.wikipedia.org/wiki/ANSI_escape_code ; les consoles Linux/Mac
 	// les supportent normalement par défaut.
-	bibliotheque_cours::activerCouleursAnsi(); 
-	#pragma endregion
+	bibliotheque_cours::activerCouleursAnsi();
+#pragma endregion
 
 	int* fuite = new int;  // Pour vérifier que la détection de fuites fonctionne; un message devrait dire qu'il y a une fuite à cette ligne.
 
@@ -304,10 +304,10 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv)
 	cout << ligneSeparation << endl;
 
 	//TODO: Appel à votre fonction d'affichage de votre liste de jeux.
-	
-//	afficherJeux(list);
+
+	afficherJeux(*list);
 	//TODO: Faire les appels à toutes vos fonctions/méthodes pour voir qu'elles fonctionnent et avoir 0% de lignes non exécutées dans le programme (aucune ligne rouge dans la couverture de code; c'est normal que les lignes de "new" et "delete" soient jaunes).  Vous avez aussi le droit d'effacer les lignes du programmes qui ne sont pas exécutée, si finalement vous pensez qu'elle ne sont pas utiles.
-	
-//	deleteCollection(list);
+
+	deleteCollection(*list);
 	//TODO: Détruire tout avant de terminer le programme.  Devrait afficher "Aucune fuite detectee." a la sortie du programme; il affichera "Fuite detectee:" avec la liste des blocs, s'il manque des delete.
 }
