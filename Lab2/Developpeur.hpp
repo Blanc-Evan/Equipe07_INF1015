@@ -18,7 +18,7 @@ public:
 	const string& getName() const;
 	const int howManyGamesDidHeParticipatesToInList(const ListeJeux& l) const;
 	void updateListeJeux(ListeJeux& l);
-	void printGames() const;
+	void print() const;
 
 private:
 	pair<std::string, ListeJeux> paireNomJeux_;
@@ -89,10 +89,10 @@ void Developpeur::augmenterTaille(ListeJeux& l, int newCapacity) const {
 }
 
 
-void Developpeur::printGames() const {
+void Developpeur::print() const {
 
 	for (int i : iter::range(this->paireNomJeux_.second.nElements)) {
-		cout << this->paireNomJeux_.second.elements[i]->titre + "\n";
+		cout << "jeu: " << this->paireNomJeux_.second.elements[i]->titre << endl;
 	}
 }
 
