@@ -84,7 +84,6 @@ void Developpeur::augmenterTaille(ListeJeux& l, int newCapacity) const {
 		temp[i] = l.elements[i];
 		delete[] l.elements[i];
 	}
-	delete l.elements;
 	l.elements = temp;
 
 }
