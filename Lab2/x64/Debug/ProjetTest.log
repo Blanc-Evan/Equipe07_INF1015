@@ -1,4 +1,6 @@
-﻿  main.cpp
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab2\main.cpp(294,7): warning C4189: 'fuite': local variable is initialized but not referenced
+﻿  ListeDeveloppeurs.cpp
+  main.cpp
+C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab2\main.cpp(295,7): warning C4189: 'fuite': local variable is initialized but not referenced
+  Generating Code...
      Creating library C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab2\x64\Debug\Exo1.lib and object C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab2\x64\Debug\Exo1.exp
   ProjetTest.vcxproj -> C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab2\x64\Debug\Exo1.exe

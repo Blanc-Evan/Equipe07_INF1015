@@ -122,10 +122,11 @@ void augmenterTaille(ListeJeux& list, int newCapacity) {
 // Utilisez la fonction pour changer la taille du tableau écrite plus haut.
 void ajouterJeu(ListeJeux& list, Jeu* game) {
 
-	if ((list.capacite - list.nElements) <= 1) {
+	if (list.nElements >= list.capacite) {
 		augmenterTaille(list, 1);
 	}
 	list.elements[list.nElements] = game;
+	list.nElements++;
 }
 
 //TODO: Fonction qui enlève un jeu de ListeJeux.
