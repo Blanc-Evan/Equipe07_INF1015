@@ -75,9 +75,6 @@ void Developpeur::updateListeJeux(ListeJeux& l) {
 
 void Developpeur::augmenterTaille(ListeJeux& l, int newCapacity) const {
 
-	if (newCapacity > l.capacite) { // si la capacite choisie n'est pas correcte
-		newCapacity = 1;
-	}
 	l.capacite = newCapacity;
 	Jeu** temp = new Jeu * [l.capacite];
 	for (auto i : iter::range(l.nElements)) {

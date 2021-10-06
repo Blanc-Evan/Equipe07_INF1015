@@ -59,7 +59,7 @@ void ListeDeveloppeurs::addDeveloppeur(Developpeur& d) {
 
 	if (&d != nullptr) {
 		if (this->nElements >= this->capacite) {
-			this->augmenterTaille()
+			this->augmenterTaille(this->capacite*2);
 		}
 		this->elements[nElements] = &d;
 		this->nElements++;

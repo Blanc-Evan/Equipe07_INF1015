@@ -123,7 +123,7 @@ void augmenterTaille(ListeJeux& list, int newCapacity) {
 void ajouterJeu(ListeJeux& list, Jeu* game) {
 
 	if (list.nElements >= list.capacite) {
-		augmenterTaille(list, 1);
+		augmenterTaille(list, list.capacite*2);
 	}
 	list.elements[list.nElements] = game;
 	list.nElements++;
