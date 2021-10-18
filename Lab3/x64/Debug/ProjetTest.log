@@ -1,13 +1,11 @@
-﻿  lectureFichierJeux.cpp
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(13,47): error C7568: argument list missing after assumed function template 'shared_ptr'
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(33): message : see reference to class template instantiation 'Liste<T>' being compiled
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(32,7): error C2853: 'elements_': a non-static data member cannot have a type that contains 'auto'
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\lectureFichierJeux.cpp(68,13): error C2512: 'Liste<Jeu>': no appropriate default constructor available
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\lectureFichierJeux.hpp(15,48): message : see declaration of 'Liste<Jeu>'
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\lectureFichierJeux.cpp(72,1): error C2512: 'Liste<Jeu>': no appropriate default constructor available
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\lectureFichierJeux.cpp(72,1): message : No constructor could take the source type, or constructor overload resolution was ambiguous
+﻿  bibliotheque_cours.cpp
+  verification_allocation.cpp
+  lectureFichierJeux.cpp
+C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\lectureFichierJeux.cpp(31,55): warning C4100: 'listeJeux': unreferenced formal parameter
+C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\lectureFichierJeux.cpp(37,51): warning C4100: 'lj': unreferenced formal parameter
+C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\lectureFichierJeux.cpp(40,11): warning C4189: 'anneeNaissance': local variable is initialized but not referenced
+C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\lectureFichierJeux.cpp(51,11): warning C4189: 'anneeSortie': local variable is initialized but not referenced
   main.cpp
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(13,47): error C7568: argument list missing after assumed function template 'shared_ptr'
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(33): message : see reference to class template instantiation 'Liste<T>' being compiled
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(32,7): error C2853: 'elements_': a non-static data member cannot have a type that contains 'auto'
   Generating Code...
+     Creating library C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\x64\Debug\ProjetTest.lib and object C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\x64\Debug\ProjetTest.exp
+  ProjetTest.vcxproj -> C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\x64\Debug\ProjetTest.exe
