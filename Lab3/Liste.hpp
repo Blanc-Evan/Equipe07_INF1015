@@ -14,7 +14,7 @@ public:
 	//TODO: Constructeurs et surcharges d'opérateurs
 	Liste() {
 		this->nElements_ = 0;
-		this->capacite_ = 1;
+		this->capacite_ = 0;
 		this->elements_ = make_unique<make_shared<T>()>();
 	}
 
