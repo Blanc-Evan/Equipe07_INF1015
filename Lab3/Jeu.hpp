@@ -8,7 +8,15 @@
 class Jeu
 {
 public:
-	//TODO: un constructeur par défaut et un constructeur paramétré.
+	//TODO: un constructeur par défaut et un constructeur paramétré
+	Jeu()=default;
+
+	Jeu(const string titre, const unsigned anneeSortie, const string developpeur) {
+
+		this->titre_ = titre;
+		this->anneeSortie_ = anneeSortie;
+		this->developpeur_ = developpeur;
+	}
 
 	const std::string& getTitre() const     { return titre_; }
 	void setTitre(const std::string& titre) { titre_ = titre; }
@@ -18,7 +26,7 @@ public:
 	void setDeveloppeur(const std::string& developpeur) { developpeur_ = developpeur; }
 
 	//TODO: Pouvoir accéder à la liste de concepteurs.
-
+	Liste<Concepteur> getListConcepteurs() const;
 	//TODO: Votre méthode pour trouver un concepteur selon un critère donné par une lambda, en utilisant la méthode de Liste.
 
 private:
@@ -26,4 +34,10 @@ private:
 	unsigned anneeSortie_;
 	std::string developpeur_;
 	//TODO: Attribut de la liste des concepteurs du jeu
+	Liste<Concepteur> listeConcepteurs_;
 };
+
+Liste<Concepteur> Jeu::getListConcepteurs() const {
+	return listeConcepteurs_;
+}
+

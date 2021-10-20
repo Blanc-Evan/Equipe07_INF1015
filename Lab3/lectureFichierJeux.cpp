@@ -67,7 +67,7 @@ Liste<Jeu> creerListeJeux(const string& nomFichier)
 	//TODO: Compléter la fonction.
 	Liste<Jeu> listeJeux;
 	for ([[maybe_unused]] int i : iter::range(nElements))
-		lireJeu(f, listeJeux);
+		listeJeux.ajouter(lireJeu(f, listeJeux));
 
 	return {};
 }
