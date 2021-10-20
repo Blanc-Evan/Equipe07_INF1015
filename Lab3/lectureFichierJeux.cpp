@@ -2,6 +2,8 @@
 #include "lectureFichierJeux.hpp"
 #include <fstream>
 #include "cppitertools/range.hpp"
+#include "gsl/span"
+
 using namespace std;
 
 #pragma region "Fonctions de lecture de base"
@@ -40,7 +42,17 @@ shared_ptr<Concepteur> lireConcepteur(Liste<Jeu>& lj, istream& f)
 	unsigned anneeNaissance = lireUint16(f);
 	string pays             = lireString(f);
 
+	//[NEED HELP]
 	//TODO: Compléter la fonction (équivalent de lireDesigner du TD2).
+/*	for (int i = 0; i < lj.size(); i++) {
+		std::shared_ptr<Concepteur> c = lj.getElements()[i].get()->trouverConcepteur([](string) -> bool {
+			
+
+			});
+		if (c != nullptr)
+			return c;
+	}
+	*/
 	cout << "C: " << nom << endl;  //TODO: Enlever cet affichage temporaire servant à voir que le code fourni lit bien les jeux.
 	return {};
 }
@@ -64,10 +76,11 @@ Liste<Jeu> creerListeJeux(const string& nomFichier)
 	ifstream f(nomFichier, ios::binary);
 	f.exceptions(ios::failbit);
 	int nElements = lireUint16(f);
+	//[DONE]
 	//TODO: Compléter la fonction.
 	Liste<Jeu> listeJeux;
 	for ([[maybe_unused]] int i : iter::range(nElements))
 		listeJeux.ajouter(lireJeu(f, listeJeux));
 
-	return {};
+	return listeJeux;
 }
