@@ -49,8 +49,10 @@ public:
 		this->elements_ = nouvelleListe;
 		this->capacite_ = nouvelleCapacite;
 	}
+
 	//TODO: Méthode pour trouver une élément selon un critère (lambda).
-	std::shared_ptr trouverSi(const std::function<bool(shared_ptr)> critere) const {
+	template < typename U>
+	std::shared_ptr trouverSi(const std::function<bool(U)> critere) const {
 		for (const auto&& element : span<this->elements_, this->nElements_>)) {
 			if (critere(element))
 				return elements_
