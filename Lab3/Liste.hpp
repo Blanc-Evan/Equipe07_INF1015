@@ -51,7 +51,7 @@ public:
 	}
 
 	//TODO: Méthode pour trouver une élément selon un critère (lambda).
-	template < typename U>
+	template <typename U>
 	std::shared_ptr trouverSi(const std::function<bool(U)> critere) const {
 		for (const auto&& element : span<this->elements_, this->nElements_>)) {
 			if (critere(element))

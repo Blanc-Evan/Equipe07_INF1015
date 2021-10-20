@@ -27,7 +27,12 @@ public:
 
 	//TODO: Pouvoir accéder à la liste de concepteurs.
 	Liste<Concepteur> getListConcepteurs() const;
+	
 	//TODO: Votre méthode pour trouver un concepteur selon un critère donné par une lambda, en utilisant la méthode de Liste.
+	template <typename U>
+	std::shared_ptr<Concepteur> trouverConcepteur(const std::function<bool(U)> critere) {
+		return this->listeConcepteurs_.trouverSi(critere);
+	}
 
 private:
 	std::string titre_;
