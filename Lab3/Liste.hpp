@@ -9,7 +9,7 @@ template <typename T>
 class Liste
 {
 public:
-	
+
 	//TODO: Constructeurs et surcharges d'opérateurs
 	Liste() = default;
 
@@ -19,7 +19,7 @@ public:
 		this->elements_ = make_unique<std::shared_ptr>();
 	}
 
-	Liste<T>::Liste(const Liste& l) {
+	Liste(const Liste& l) {
 		this->nElements_ = l.nElements_;
 		this->capacite_ = l.capacite_;
 		this->elements_ = std::move(l.elements_);
@@ -34,8 +34,8 @@ public:
 	}
 
 	// Pour size, on utilise le même nom que les accesseurs de la bibliothèque standard, qui permet d'utiliser certaines fonctions de la bibliotheque sur cette classe.
-	unsigned size() const         { return nElements_; }
-	unsigned getCapacite() const  { return capacite_; }
+	unsigned size() const { return nElements_; }
+	unsigned getCapacite() const { return capacite_; }
 
 	//TODO: Méthode pour changer la capacité de la liste
 	void changerTaille(const unsigned nouvelleCapacite) {
@@ -50,6 +50,13 @@ public:
 		this->capacite_ = nouvelleCapacite;
 	}
 	//TODO: Méthode pour trouver une élément selon un critère (lambda).
+	std::shared_ptr trouverSi(const std::function<bool(shared_ptr)> critere) const {
+		for (const auto&& element : span<this->elements_, this->nElements_>)) {
+			if (critere(element))
+				return elements_
+		}
+		return nullptr;
+	}
 
 private:
 	unsigned nElements_;
