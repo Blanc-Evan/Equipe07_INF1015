@@ -59,6 +59,7 @@ shared_ptr<Concepteur> lireConcepteur(Liste<Jeu>& lj, istream& f)
 	return newConcepteur;
 }
 
+// [DONE]
 shared_ptr<Jeu> lireJeu(istream& f, Liste<Jeu>& lj)
 {
 	string titre          = lireString(f);
@@ -66,8 +67,15 @@ shared_ptr<Jeu> lireJeu(istream& f, Liste<Jeu>& lj)
 	string developpeur    = lireString(f);
 	unsigned nConcepteurs = lireUint8(f);
 	//TODO: Compléter la fonction (équivalent de lireJeu du TD2).
+	std::shared_ptr<Jeu> jeu = std::make_shared<Jeu>();
 	for (unsigned int i = 0; i < nConcepteurs; i++)
-		lireConcepteur(lj, f);
+		jeu->getListConcepteurs().ajouter(lireConcepteur(lj, f));
+
+	std::shared_ptr<Jeu> newJeu = make_shared<Jeu>();
+	newJeu->setTitre(titre);
+	newJeu->setAnneeSortie(anneeSortie);
+	newJeu->setDeveloppeur(developpeur);
+
 
 	cout << "J: " << titre << endl;  //TODO: Enlever cet affichage temporaire servant à voir que le code fourni lit bien les jeux.
 	return {};

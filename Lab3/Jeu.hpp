@@ -25,9 +25,11 @@ public:
 	const std::string& getDeveloppeur() const { return developpeur_; }
 	void setDeveloppeur(const std::string& developpeur) { developpeur_ = developpeur; }
 
-	//[DONE]
+	// [DONE]
 	//TODO: Pouvoir accéder à la liste de concepteurs.
-	Liste<Concepteur> getListConcepteurs() const;
+	Liste<Concepteur> getListConcepteurs() const {
+		return listeConcepteurs_;
+	}
 
 	//[NEED HELP]
 	//TODO: Votre méthode pour trouver un concepteur selon un critère donné par une lambda, en utilisant la méthode de Liste.
@@ -44,8 +46,3 @@ private:
 	//TODO: Attribut de la liste des concepteurs du jeu
 	Liste<Concepteur> listeConcepteurs_;
 };
-
-Liste<Concepteur> Jeu::getListConcepteurs() const {
-	return listeConcepteurs_;
-}
-
