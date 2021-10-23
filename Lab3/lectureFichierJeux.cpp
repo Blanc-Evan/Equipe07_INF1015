@@ -81,6 +81,7 @@ shared_ptr<Jeu> lireJeu(istream& f, Liste<Jeu>& lj)
 	return {};
 }
 
+//DONE]
 Liste<Jeu> creerListeJeux(const string& nomFichier)
 {
 	ifstream f(nomFichier, ios::binary);

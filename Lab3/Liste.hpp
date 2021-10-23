@@ -32,6 +32,7 @@ public:
 			this->elements_[this->nElements_++] = element;
 		}
 	}
+
 	//[DONE]
 	// Pour size, on utilise le même nom que les accesseurs de la bibliothèque standard, qui permet d'utiliser certaines fonctions de la bibliotheque sur cette classe.
 	unsigned size() const { return nElements_; }
@@ -51,7 +52,7 @@ public:
 		this->elements_ = nouvelleListe;
 		this->capacite_ = nouvelleCapacite;
 	}
-	//[NEED HELP]
+	//[DONE]
 	//TODO: Méthode pour trouver une élément selon un critère (lambda).
 	template <typename U>
 	std::shared_ptr trouverSi(const std::function<bool(U)> critere) const {
