@@ -1,11 +1,9 @@
-﻿  bibliotheque_cours.cpp
-  verification_allocation.cpp
-  lectureFichierJeux.cpp
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\lectureFichierJeux.cpp(31,55): warning C4100: 'listeJeux': unreferenced formal parameter
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\lectureFichierJeux.cpp(37,51): warning C4100: 'lj': unreferenced formal parameter
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\lectureFichierJeux.cpp(40,11): warning C4189: 'anneeNaissance': local variable is initialized but not referenced
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\lectureFichierJeux.cpp(51,11): warning C4189: 'anneeSortie': local variable is initialized but not referenced
+﻿  lectureFichierJeux.cpp
+C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(65,1): error C2955: 'std::shared_ptr': use of class template requires template argument list
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\memory(1504): message : see declaration of 'std::shared_ptr'
+C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(79): message : see reference to class template instantiation 'Liste<T>' being compiled
   main.cpp
+C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(65,1): error C2955: 'std::shared_ptr': use of class template requires template argument list
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\memory(1504): message : see declaration of 'std::shared_ptr'
+C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(79): message : see reference to class template instantiation 'Liste<T>' being compiled
   Generating Code...
-     Creating library C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\x64\Debug\ProjetTest.lib and object C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\x64\Debug\ProjetTest.exp
-  ProjetTest.vcxproj -> C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\x64\Debug\ProjetTest.exe

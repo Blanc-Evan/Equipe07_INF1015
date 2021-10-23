@@ -11,7 +11,7 @@ public:
 	//TODO: un constructeur par défaut et un constructeur paramétré
 	Jeu()=default;
 
-	Jeu(const string titre, const unsigned anneeSortie, const string developpeur) {
+	Jeu(const std::string titre, const unsigned anneeSortie, const std::string developpeur) {
 
 		this->titre_ = titre;
 		this->anneeSortie_ = anneeSortie;

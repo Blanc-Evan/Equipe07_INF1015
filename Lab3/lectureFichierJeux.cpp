@@ -45,7 +45,7 @@ shared_ptr<Concepteur> lireConcepteur(Liste<Jeu>& lj, istream& f)
 	//[DONE]
 	//TODO: Compléter la fonction (équivalent de lireDesigner du TD2).
 	for (int i = 0; i < lj.size(); i++) {
-		std::shared_ptr<Concepteur> c = lj.getElements()[i].get()->trouverConcepteur([](U v)  {return v->nom_ == nom});
+		std::shared_ptr<Concepteur> c = lj.getElements()[i].get()->trouverConcepteur([](U v) {return v->nom_ == nom; });
 		if (c != nullptr)
 			return c;
 	}
@@ -60,6 +60,7 @@ shared_ptr<Concepteur> lireConcepteur(Liste<Jeu>& lj, istream& f)
 }
 
 // [DONE]
+
 shared_ptr<Jeu> lireJeu(istream& f, Liste<Jeu>& lj)
 {
 	string titre          = lireString(f);

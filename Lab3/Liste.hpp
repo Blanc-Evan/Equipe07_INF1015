@@ -5,6 +5,7 @@
 #include "gsl/span"
 #include "cppitertools/range.hpp"
 
+
 template <typename T>
 class Liste
 {
@@ -24,6 +25,17 @@ public:
 		this->capacite_ = l.capacite_;
 		this->elements_ = std::move(l.elements_);
 	}
+
+	//[DONE] mais à tester
+	std::shared_ptr<T> operator[](const unsigned i) const{
+		return this->elements_[i];
+	}
+
+	ostream& operator<<(ostream$ os, const T element) {
+
+		return os << element << endl;
+	}
+
 	//[DONE]
 	//TODO: Méthode pour ajouter un élément à la liste
 	void ajouter(std::shared_ptr<T> element) {
@@ -45,7 +57,7 @@ public:
 		assert(nouvelleCapacite >= this->nElements);
 		std::unique_ptr<std::shared_ptr<T>> nouvelleListe = std::make_unique<std::shared_ptr[nouvelleCapacite]>();
 
-		for (itn i : iter::range(this->nElements_)) {
+		for (int i : iter::range(this->nElements_)) {
 			nouvelleListe[i] = this->elements_[i];
 		}
 
@@ -56,9 +68,9 @@ public:
 	//TODO: Méthode pour trouver une élément selon un critère (lambda).
 	template <typename U>
 	std::shared_ptr trouverSi(const std::function<bool(U)> critere) const {
-		for (const auto&& element : span<this->elements_, this->nElements_>)) {
+		for (const auto&& element : span<this->elements_, this->nElements_>) {
 			if (critere(element))
-				return elements_
+				return elements_;
 		}
 		return nullptr;
 	}

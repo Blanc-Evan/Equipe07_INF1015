@@ -8,11 +8,11 @@ public:
 	//TODO: Un constructeur par défaut et un constructeur paramétré.
 	Concepteur() = default;
 
-	Concepteur(const string nom, const unsigned anneeNaissance, const string pays) {
+	Concepteur(const std::string nom, const unsigned anneeNaissance, const std::string pays) {
 
 		this->nom_ = nom;
 		this->anneeNaissance_ = anneeNaissance;
-		this->pays_ = pays;;
+		this->pays_ = pays;
 	}
 
 
