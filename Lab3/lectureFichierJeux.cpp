@@ -35,26 +35,28 @@ shared_ptr<Concepteur> chercherConcepteur(Liste<Jeu>& listeJeux, string nom)
 	//TODO: Compléter la fonction (équivalent de trouverDesigner du TD2).
 	return {};
 }
-
+template <typename U>
 shared_ptr<Concepteur> lireConcepteur(Liste<Jeu>& lj, istream& f)
 {
 	string nom              = lireString(f);
 	unsigned anneeNaissance = lireUint16(f);
 	string pays             = lireString(f);
 
-	//[NEED HELP]
+	//[DONE]
 	//TODO: Compléter la fonction (équivalent de lireDesigner du TD2).
-/*	for (int i = 0; i < lj.size(); i++) {
-		std::shared_ptr<Concepteur> c = lj.getElements()[i].get()->trouverConcepteur([](string) -> bool {
-			
-
-			});
+	for (int i = 0; i < lj.size(); i++) {
+		std::shared_ptr<Concepteur> c = lj.getElements()[i].get()->trouverConcepteur([](U v)  {return v->nom_ == nom});
 		if (c != nullptr)
 			return c;
 	}
-	*/
+
+	std::shared_ptr<Concepteur> newConcepteur = make_shared<Concepteur>();
+	newConcepteur->setNom(nom);
+	newConcepteur->setAnneeNaissance(anneeNaissance);
+	newConcepteur->setPays(pays);
+
 	cout << "C: " << nom << endl;  //TODO: Enlever cet affichage temporaire servant à voir que le code fourni lit bien les jeux.
-	return {};
+	return newConcepteur;
 }
 
 shared_ptr<Jeu> lireJeu(istream& f, Liste<Jeu>& lj)
