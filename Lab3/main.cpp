@@ -8,7 +8,20 @@
 #include <fstream>
 using namespace std;
 
-//TODO: Vos surcharges d'opérateur <<
+//TODO: Vos surcharges d'opérateur endl
+ostream& operator<<(ostream os, const Concepteur element) {
+	return os << "Nom: "+element.getNom() << "Année Naissance : "+element.getAnneeNaissance() << "Pays: "+element.getPays() << endl;
+}
+
+ostream& operator<<(ostream os, const Jeu element) {
+	string s = "";
+	for (auto i : iter::range(element.getListConcepteurs().size())) {
+		auto c =  element.getListConcepteurs()[i];
+		string annee = c->getAnneeNaissance() + "";
+		s += "nom: "+ c->getNom() + " Année Naissance: "+annee + " Pays: "+c->getPays() + "\n";
+	}
+	return os << "Titre: " + element.getTitre() << "Année Sortie : " + element.getAnneeSortie() << "Developpeur: " + element.getDeveloppeur() << "Liste Concepteurs: \n"+s << endl;
+}
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv)
 {

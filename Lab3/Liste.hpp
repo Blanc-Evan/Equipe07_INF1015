@@ -31,11 +31,6 @@ public:
 		return this->elements_[i];
 	}
 
-	ostream& operator<<(ostream$ os, const T element) {
-
-		return os << element << endl;
-	}
-
 	//[DONE]
 	//TODO: Méthode pour ajouter un élément à la liste
 	void ajouter(std::shared_ptr<T> element) {
@@ -67,7 +62,7 @@ public:
 	//[DONE]
 	//TODO: Méthode pour trouver une élément selon un critère (lambda).
 	template <typename U>
-	std::shared_ptr trouverSi(const std::function<bool(U)> critere) const {
+	std::shared_ptr<U> trouverSi(const std::function<bool(U)> critere) const {
 		for (const auto&& element : span<this->elements_, this->nElements_>) {
 			if (critere(element))
 				return elements_;

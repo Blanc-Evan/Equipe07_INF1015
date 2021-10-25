@@ -30,12 +30,20 @@ string lireString(istream& fichier)
 }
 #pragma endregion
 
+template <typename U>
 shared_ptr<Concepteur> chercherConcepteur(Liste<Jeu>& listeJeux, string nom)
 {
+	//[DONE]
 	//TODO: Compléter la fonction (équivalent de trouverDesigner du TD2).
-	return {};
+	for (int i = 0; i < listeJeux.size(); i++) {
+		std::shared_ptr<Concepteur> c = lj.getElements()[i].get()->trouverConcepteur([](U v) {return v->nom_ == nom; });
+		if (c != nullptr)
+			return c;
+	}
+
+	return nullptr;
 }
-template <typename U>
+
 shared_ptr<Concepteur> lireConcepteur(Liste<Jeu>& lj, istream& f)
 {
 	string nom              = lireString(f);
@@ -44,16 +52,15 @@ shared_ptr<Concepteur> lireConcepteur(Liste<Jeu>& lj, istream& f)
 
 	//[DONE]
 	//TODO: Compléter la fonction (équivalent de lireDesigner du TD2).
-	for (int i = 0; i < lj.size(); i++) {
-		std::shared_ptr<Concepteur> c = lj.getElements()[i].get()->trouverConcepteur([](U v) {return v->nom_ == nom; });
-		if (c != nullptr)
-			return c;
-	}
+	std::shared_ptr<Concepteur> c = chercherConcepteur(lj, nom);
+	
+	if (c != nullptr) 
+		return c;
 
-	std::shared_ptr<Concepteur> newConcepteur = make_shared<Concepteur>();
-	newConcepteur->setNom(nom);
-	newConcepteur->setAnneeNaissance(anneeNaissance);
-	newConcepteur->setPays(pays);
+	std::shared_ptr<Concepteur> newConcepteur = make_shared<Concepteur>(nom, anneeNaissance, pays);
+//	newConcepteur->setNom(nom);
+//	newConcepteur->setAnneeNaissance(anneeNaissance);
+//	newConcepteur->setPays(pays);
 
 	cout << "C: " << nom << endl;  //TODO: Enlever cet affichage temporaire servant à voir que le code fourni lit bien les jeux.
 	return newConcepteur;
@@ -72,10 +79,10 @@ shared_ptr<Jeu> lireJeu(istream& f, Liste<Jeu>& lj)
 	for (unsigned int i = 0; i < nConcepteurs; i++)
 		jeu->getListConcepteurs().ajouter(lireConcepteur(lj, f));
 
-	std::shared_ptr<Jeu> newJeu = make_shared<Jeu>();
-	newJeu->setTitre(titre);
-	newJeu->setAnneeSortie(anneeSortie);
-	newJeu->setDeveloppeur(developpeur);
+	std::shared_ptr<Jeu> newJeu = make_shared<Jeu>(titre, anneeSortie, developpeur);
+//	newJeu->setTitre(titre);
+//	newJeu->setAnneeSortie(anneeSortie);
+//	newJeu->setDeveloppeur(developpeur);
 
 
 	cout << "J: " << titre << endl;  //TODO: Enlever cet affichage temporaire servant à voir que le code fourni lit bien les jeux.
