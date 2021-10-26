@@ -18,6 +18,8 @@ public:
 		this->developpeur_ = developpeur;
 	}
 
+	Jeu(const Jeu& j) : Jeu(j.titre_, j.anneeSortie_, j.developpeur_) {};
+	
 	const std::string& getTitre() const     { return titre_; }
 	void setTitre(const std::string& titre) { titre_ = titre; }
 	unsigned getAnneeSortie() const         { return anneeSortie_; }
@@ -33,8 +35,7 @@ public:
 
 	//[DONE]
 	//TODO: Votre méthode pour trouver un concepteur selon un critère donné par une lambda, en utilisant la méthode de Liste.
-	template <typename U>
-	std::shared_ptr<Concepteur> trouverConcepteur(const std::function<bool(U)> critere) {
+	std::shared_ptr<Concepteur> trouverConcepteur(const std::function<bool(Concepteur)> critere) {
 		return this->listeConcepteurs_.trouverSi(critere);
 	}
 

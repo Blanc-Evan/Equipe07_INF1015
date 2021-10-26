@@ -1,24 +1,48 @@
 ﻿  lectureFichierJeux.cpp
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(34,9): error C2143: syntax error: missing ';' before '&'
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(84): message : see reference to class template instantiation 'Liste<T>' being compiled
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(34,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(34,1): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(70,1): error C2955: 'std::shared_ptr': use of class template requires template argument list
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\memory(1504): message : see declaration of 'std::shared_ptr'
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(34,22): error C2061: syntax error: identifier 'ostream$'
+C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(27,1): error C2540: non-constant expression as array bound
+C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(23): message : while compiling class template member function 'Liste<Jeu>::Liste(const Liste<Jeu> &)'
+C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\lectureFichierJeux.cpp(104): message : see reference to function template instantiation 'Liste<Jeu>::Liste(const Liste<Jeu> &)' being compiled
 C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\lectureFichierJeux.cpp(38): message : see reference to class template instantiation 'Liste<Jeu>' being compiled
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(34,1): error C2805: binary 'operator <<' has too few parameters
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(34,1): error C2333: 'Liste<Jeu>::operator <<': error in function declaration; skipping function body
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\lectureFichierJeux.cpp(39,35): error C3861: 'lj': identifier not found
   main.cpp
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(34,9): error C2143: syntax error: missing ';' before '&'
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(84): message : see reference to class template instantiation 'Liste<T>' being compiled
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(34,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(34,1): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(70,1): error C2955: 'std::shared_ptr': use of class template requires template argument list
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\memory(1504): message : see declaration of 'std::shared_ptr'
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(34,22): error C2061: syntax error: identifier 'ostream$'
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\main.cpp(22): message : see reference to class template instantiation 'Liste<Jeu>' being compiled
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(34,1): error C2805: binary 'operator <<' has too few parameters
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(34,1): error C2333: 'Liste<Jeu>::operator <<': error in function declaration; skipping function body
+C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(73,1): error C2664: '_Ret std::_Func_class<_Ret,const T &>::operator ()(const T &) const': cannot convert argument 1 from '_Elem' to 'const T &'
+          with
+          [
+              _Ret=bool,
+              T=Concepteur
+          ]
+          and
+          [
+              _Elem=std::shared_ptr<Concepteur>
+          ]
+          and
+          [
+              T=Concepteur
+          ]
+C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(73,1): message : Reason: cannot convert from '_Elem' to 'const T'
+          with
+          [
+              _Elem=std::shared_ptr<Concepteur>
+          ]
+          and
+          [
+              T=Concepteur
+          ]
+C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(73,27): message : No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\functional(963,10): message : see declaration of 'std::_Func_class<_Ret,const T &>::operator ()'
+          with
+          [
+              _Ret=bool,
+              T=Concepteur
+          ]
+C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(70): message : while compiling class template member function 'std::shared_ptr<Concepteur> Liste<Concepteur>::trouverSi(const std::function<bool (const T &)>)'
+          with
+          [
+              T=Concepteur
+          ]
+C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Jeu.hpp(39): message : see reference to function template instantiation 'std::shared_ptr<Concepteur> Liste<Concepteur>::trouverSi(const std::function<bool (const T &)>)' being compiled
+          with
+          [
+              T=Concepteur
+          ]
+C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Jeu.hpp(48): message : see reference to class template instantiation 'Liste<Concepteur>' being compiled
   Generating Code...

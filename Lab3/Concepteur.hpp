@@ -15,6 +15,7 @@ public:
 		this->pays_ = pays;
 	}
 
+	Concepteur(const Concepteur& c) : Concepteur(c.nom_, c.anneeNaissance_, c.pays_) {};
 
 	const std::string& getNom() const     { return nom_; }
 	void setNom(const std::string& nom)   { nom_ = nom; }

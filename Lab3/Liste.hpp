@@ -17,13 +17,18 @@ public:
 	Liste(const unsigned capacite) {
 		this->nElements_ = 0;
 		this->capacite_ = capacite;
-		this->elements_ = make_unique<std::shared_ptr>();
+		this->elements_ = make_shared<std::shared_ptr<T>[capacite]>();
 	}
 
 	Liste(const Liste& l) {
 		this->nElements_ = l.nElements_;
 		this->capacite_ = l.capacite_;
-		this->elements_ = std::move(l.elements_);
+
+		this->elements_ = std::make_shared<std::shared_ptr<T>[l.capacite_]>();
+
+		for (unsigned i = 0; i < l.nElements_; i++) {
+			this->elements_[i] = std::make_shared<T>(l.elements_[i]);
+		}
 	}
 
 	//[DONE] mais à tester
@@ -35,7 +40,7 @@ public:
 	//TODO: Méthode pour ajouter un élément à la liste
 	void ajouter(std::shared_ptr<T> element) {
 		if (this->nElements_ == this->capacite_) {
-			changerTaille(max(1U, this->capacite * 2));
+			changerTaille(std::max(1U, this->capacite_ * 2));
 			this->elements_[this->nElements_++] = element;
 		}
 	}
@@ -44,16 +49,16 @@ public:
 	// Pour size, on utilise le même nom que les accesseurs de la bibliothèque standard, qui permet d'utiliser certaines fonctions de la bibliotheque sur cette classe.
 	unsigned size() const { return nElements_; }
 	unsigned getCapacite() const { return capacite_; }
-	std::unique_ptr<std::shared_ptr<T>[]> getElements() const { return elements_; }
+	std::shared_ptr<std::shared_ptr<T>[]> getElements() const { return elements_; }
 
 	//[DONE]
 	//TODO: Méthode pour changer la capacité de la liste
 	void changerTaille(const unsigned nouvelleCapacite) {
-		assert(nouvelleCapacite >= this->nElements);
-		std::unique_ptr<std::shared_ptr<T>> nouvelleListe = std::make_unique<std::shared_ptr[nouvelleCapacite]>();
+		assert(nouvelleCapacite >= this->nElements_);
+		std::shared_ptr<std::shared_ptr<T>[]> nouvelleListe = std::make_shared<std::shared_ptr<T>[nouvelleCapacite]>();
 
-		for (int i : iter::range(this->nElements_)) {
-			nouvelleListe[i] = this->elements_[i];
+		for (unsigned i = 0; i < this->nElements_; i++) {
+			nouvelleListe[i] = std::make_shared<T>(this->elements_[i]);
 		}
 
 		this->elements_ = nouvelleListe;
@@ -61,11 +66,12 @@ public:
 	}
 	//[DONE]
 	//TODO: Méthode pour trouver une élément selon un critère (lambda).
-	template <typename U>
-	std::shared_ptr<U> trouverSi(const std::function<bool(U)> critere) const {
-		for (const auto&& element : span<this->elements_, this->nElements_>) {
-			if (critere(element))
-				return elements_;
+
+	std::shared_ptr<T> trouverSi(const std::function<bool(const T&)> critere) {
+
+		for (int i : iter::range(this->nElements_)) {
+			if (critere(elements_[i]))
+				return std::make_shared<T>(elements_[i]);
 		}
 		return nullptr;
 	}
@@ -75,5 +81,5 @@ private:
 	unsigned capacite_;
 	//[DONE]
 	//TODO: Attribut contenant les éléments de la liste.
-	std::unique_ptr<std::shared_ptr<T>[]> elements_;
+	std::shared_ptr<std::shared_ptr<T>[]> elements_;
 };
