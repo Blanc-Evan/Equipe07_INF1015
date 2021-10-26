@@ -17,14 +17,14 @@ public:
 	Liste(const unsigned capacite) {
 		this->nElements_ = 0;
 		this->capacite_ = capacite;
-		this->elements_ = make_shared<std::shared_ptr<T>[capacite]>();
+		this->elements_ = make_unique<std::shared_ptr<T>[]>(capacite);
 	}
 
 	Liste(const Liste& l) {
 		this->nElements_ = l.nElements_;
 		this->capacite_ = l.capacite_;
 
-		this->elements_ = std::make_shared<std::shared_ptr<T>[l.capacite_]>();
+		this->elements_ = std::make_unique<std::shared_ptr<T>[]>(l.capacite_);
 
 		for (unsigned i = 0; i < l.nElements_; i++) {
 			this->elements_[i] = std::make_shared<T>(l.elements_[i]);
@@ -49,13 +49,13 @@ public:
 	// Pour size, on utilise le même nom que les accesseurs de la bibliothèque standard, qui permet d'utiliser certaines fonctions de la bibliotheque sur cette classe.
 	unsigned size() const { return nElements_; }
 	unsigned getCapacite() const { return capacite_; }
-	std::shared_ptr<std::shared_ptr<T>[]> getElements() const { return elements_; }
+	std::unique_ptr<std::shared_ptr<T>[]> getElements() const { return elements_; }
 
 	//[DONE]
 	//TODO: Méthode pour changer la capacité de la liste
 	void changerTaille(const unsigned nouvelleCapacite) {
 		assert(nouvelleCapacite >= this->nElements_);
-		std::shared_ptr<std::shared_ptr<T>[]> nouvelleListe = std::make_shared<std::shared_ptr<T>[nouvelleCapacite]>();
+		std::shared_ptr<std::shared_ptr<T>[]> nouvelleListe = std::make_shared<std::shared_ptr<T>[]>(nouvelleCapacite);
 
 		for (unsigned i = 0; i < this->nElements_; i++) {
 			nouvelleListe[i] = std::make_shared<T>(this->elements_[i]);
@@ -81,5 +81,5 @@ private:
 	unsigned capacite_;
 	//[DONE]
 	//TODO: Attribut contenant les éléments de la liste.
-	std::shared_ptr<std::shared_ptr<T>[]> elements_;
+	std::unique_ptr<std::shared_ptr<T>[]> elements_;
 };
