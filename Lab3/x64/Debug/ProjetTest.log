@@ -1,50 +1,39 @@
 ﻿  lectureFichierJeux.cpp
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(73,1): error C2664: '_Ret std::_Func_class<_Ret,const T &>::operator ()(const T &) const': cannot convert argument 1 from '_Ty' to 'const T &'
+C:\Users\Ahmed Zghal\Documents\GitHub\Lab1-Equipe07\Lab3\Liste.hpp(73,1): error C2664: '_Ret std::_Func_class<_Ret,Concepteur>::operator ()(Concepteur) const' : impossible de convertir l'argument 1 de '_Ty' en 'Concepteur'
           with
           [
-              _Ret=bool,
-              T=Concepteur
+              _Ret=bool
           ]
           and
           [
               _Ty=std::shared_ptr<Concepteur>
           ]
-          and
-          [
-              T=Concepteur
-          ]
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(73,1): message : Reason: cannot convert from '_Ty' to 'const T'
+C:\Users\Ahmed Zghal\Documents\GitHub\Lab1-Equipe07\Lab3\Liste.hpp(73,33): message : Aucun opérateur de conversion définie par l'utilisateur disponible qui puisse effectuer cette conversion, ou l'opérateur ne peut pas être appelé
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\functional(963,10): message : voir la déclaration de 'std::_Func_class<_Ret,Concepteur>::operator ()'
           with
           [
-              _Ty=std::shared_ptr<Concepteur>
+              _Ret=bool
           ]
-          and
-          [
-              T=Concepteur
-          ]
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(73,27): message : No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\functional(963,10): message : see declaration of 'std::_Func_class<_Ret,const T &>::operator ()'
-          with
-          [
-              _Ret=bool,
-              T=Concepteur
-          ]
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(70): message : while compiling class template member function 'std::shared_ptr<Concepteur> Liste<Concepteur>::trouverSi(const std::function<bool (const T &)>)'
-          with
-          [
-              T=Concepteur
-          ]
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Jeu.hpp(39): message : see reference to function template instantiation 'std::shared_ptr<Concepteur> Liste<Concepteur>::trouverSi(const std::function<bool (const T &)>)' being compiled
-          with
-          [
-              T=Concepteur
-          ]
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Jeu.hpp(48): message : see reference to class template instantiation 'Liste<Concepteur>' being compiled
+C:\Users\Ahmed Zghal\Documents\GitHub\Lab1-Equipe07\Lab3\Liste.hpp(70): message : pendant la compilation de la fonction membre classe modèle 'std::shared_ptr<Concepteur> Liste<Concepteur>::trouverSi(const std::function<bool (Concepteur)> &)'
+C:\Users\Ahmed Zghal\Documents\GitHub\Lab1-Equipe07\Lab3\Jeu.hpp(40): message : voir la référence à l'instanciation de la fonction modèle 'std::shared_ptr<Concepteur> Liste<Concepteur>::trouverSi(const std::function<bool (Concepteur)> &)' en cours de compilation
+C:\Users\Ahmed Zghal\Documents\GitHub\Lab1-Equipe07\Lab3\Jeu.hpp(49): message : voir la référence à l'instanciation classe modèle 'Liste<Concepteur>' en cours de compilation
   main.cpp
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(52,80): error C2280: 'std::unique_ptr<std::shared_ptr<Jeu> [],std::default_delete<std::shared_ptr<Jeu> []>>::unique_ptr(const std::unique_ptr<std::shared_ptr<Jeu> [],std::default_delete<std::shared_ptr<Jeu> []>> &)': attempting to reference a deleted function
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\memory(3402): message : see declaration of 'std::unique_ptr<std::shared_ptr<Jeu> [],std::default_delete<std::shared_ptr<Jeu> []>>::unique_ptr'
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\memory(3402,5): message : 'std::unique_ptr<std::shared_ptr<Jeu> [],std::default_delete<std::shared_ptr<Jeu> []>>::unique_ptr(const std::unique_ptr<std::shared_ptr<Jeu> [],std::default_delete<std::shared_ptr<Jeu> []>> &)': function was explicitly deleted
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\Liste.hpp(52): message : while compiling class template member function 'std::unique_ptr<std::shared_ptr<Jeu> [],std::default_delete<std::shared_ptr<Jeu> []>> Liste<Jeu>::getElements(void) const'
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\main.cpp(50): message : see reference to function template instantiation 'std::unique_ptr<std::shared_ptr<Jeu> [],std::default_delete<std::shared_ptr<Jeu> []>> Liste<Jeu>::getElements(void) const' being compiled
-C:\Users\Evan BLANC\Documents\New folder\INF1015\Lab3\main.cpp(35): message : see reference to class template instantiation 'Liste<Jeu>' being compiled
-  Generating Code...
+C:\Users\Ahmed Zghal\Documents\GitHub\Lab1-Equipe07\Lab3\Liste.hpp(73,1): error C2664: '_Ret std::_Func_class<_Ret,Concepteur>::operator ()(Concepteur) const' : impossible de convertir l'argument 1 de '_Ty' en 'Concepteur'
+          with
+          [
+              _Ret=bool
+          ]
+          and
+          [
+              _Ty=std::shared_ptr<Concepteur>
+          ]
+C:\Users\Ahmed Zghal\Documents\GitHub\Lab1-Equipe07\Lab3\Liste.hpp(73,33): message : Aucun opérateur de conversion définie par l'utilisateur disponible qui puisse effectuer cette conversion, ou l'opérateur ne peut pas être appelé
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\functional(963,10): message : voir la déclaration de 'std::_Func_class<_Ret,Concepteur>::operator ()'
+          with
+          [
+              _Ret=bool
+          ]
+C:\Users\Ahmed Zghal\Documents\GitHub\Lab1-Equipe07\Lab3\Liste.hpp(70): message : pendant la compilation de la fonction membre classe modèle 'std::shared_ptr<Concepteur> Liste<Concepteur>::trouverSi(const std::function<bool (Concepteur)> &)'
+C:\Users\Ahmed Zghal\Documents\GitHub\Lab1-Equipe07\Lab3\Jeu.hpp(40): message : voir la référence à l'instanciation de la fonction modèle 'std::shared_ptr<Concepteur> Liste<Concepteur>::trouverSi(const std::function<bool (Concepteur)> &)' en cours de compilation
+C:\Users\Ahmed Zghal\Documents\GitHub\Lab1-Equipe07\Lab3\Jeu.hpp(49): message : voir la référence à l'instanciation classe modèle 'Liste<Concepteur>' en cours de compilation
+  Génération de code en cours...

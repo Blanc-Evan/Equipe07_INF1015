@@ -32,7 +32,7 @@ public:
 	}
 
 	//[DONE] mais à tester
-	std::shared_ptr<T> operator[](const unsigned i) const{
+	const std::shared_ptr<T> operator[](const int i)const  {
 		return this->elements_[i];
 	}
 
@@ -49,29 +49,29 @@ public:
 	// Pour size, on utilise le même nom que les accesseurs de la bibliothèque standard, qui permet d'utiliser certaines fonctions de la bibliotheque sur cette classe.
 	unsigned size() const { return nElements_; }
 	unsigned getCapacite() const { return capacite_; }
-	std::unique_ptr<std::shared_ptr<T>[]> getElements() const { return elements_; }
+	 std::unique_ptr<std::shared_ptr<T>[]> getElements() const { return elements_; }
 
 	//[DONE]
 	//TODO: Méthode pour changer la capacité de la liste
 	void changerTaille(const unsigned nouvelleCapacite) {
 		assert(nouvelleCapacite >= this->nElements_);
-		std::shared_ptr<std::shared_ptr<T>[]> nouvelleListe = std::make_shared<std::shared_ptr<T>[]>(nouvelleCapacite);
+		std::unique_ptr<std::shared_ptr<T>[]> nouvelleListe = std::make_unique <std::shared_ptr<T>[]>(nouvelleCapacite);
 
 		for (unsigned i = 0; i < this->nElements_; i++) {
 			nouvelleListe[i] = std::make_shared<T>(this->elements_[i]);
 		}
 
-		this->elements_ = nouvelleListe;
+		this->elements_ = move(nouvelleListe);
 		this->capacite_ = nouvelleCapacite;
 	}
 	//[DONE]
 	//TODO: Méthode pour trouver une élément selon un critère (lambda).
 
-	std::shared_ptr<T> trouverSi(const std::function<bool(const T&)> critere) {
+	 std::shared_ptr<T> trouverSi(const std::function<bool(T)>& critere) {
 
 		for (int i : iter::range(this->nElements_)) {
-			if (critere(elements_[i]))
-				return std::make_shared<T>(elements_[i]);
+			if (critere(this->elements_[i]))
+				return std::make_shared<T>(this->elements_[i]);
 		}
 		return nullptr;
 	}

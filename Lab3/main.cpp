@@ -46,20 +46,20 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv)
 	//NOTE: Il n'est pas nécessaire de couvrir les getters/setters simples fournis; il faut tester si vous en ajoutez ou les modifiez.
 	//NOTE: Pour Liste, qui est générique, on demande de couvrir uniquement pour Liste<Jeu>, pas pour tous les types.
 
-	for (int i = 0; i < 2; i++) {
-		std::shared_ptr<Concepteur> c = lj.getElements()[i].get()->trouverConcepteur([](Concepteur c) {return c.getNom() == "Yoshinori Kitaze"; });
-		if (c != nullptr) {
-			cout << c;
-		}
-	}
+	//for (int i = 0; i < 2; i++) {
+	//	std::shared_ptr<Concepteur> c = lj.getElements()[i].get()->trouverConcepteur([](Concepteur c) {return c.getNom() == "Yoshinori Kitaze"; });
+		//if (c != nullptr) {
+			///cout << c;
+		//}
+	//}
 
-	Jeu copieJeu = *lj[2];
+	//Jeu copieJeu = *lj[2];
 
-	copieJeu.getListConcepteurs()[2] = lj[0]->getListConcepteurs()[0];
+	//copieJeu.getListConcepteurs()[2] = lj[0]->getListConcepteurs()[0];
 
-	cout << lj[2];
+	//cout << lj[2];
 
-	cout << std::make_shared<Jeu> (copieJeu);
+	//cout << std::make_shared<Jeu> (copieJeu);
 
 	// La création de la liste couvre les autres fonctions de notre code
 }

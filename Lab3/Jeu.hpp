@@ -35,6 +35,7 @@ public:
 
 	//[DONE]
 	//TODO: Votre méthode pour trouver un concepteur selon un critère donné par une lambda, en utilisant la méthode de Liste.
+	
 	std::shared_ptr<Concepteur> trouverConcepteur(const std::function<bool(Concepteur)> critere) {
 		return this->listeConcepteurs_.trouverSi(critere);
 	}
