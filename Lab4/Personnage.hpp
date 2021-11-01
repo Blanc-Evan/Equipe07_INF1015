@@ -34,7 +34,7 @@ public:
 			this->color_ = COLOR.find(couleur)->second;
 		}
 
-private:
+protected:
 	std::string nom_;
 	std::string titrePremiereApparition_;
 };
