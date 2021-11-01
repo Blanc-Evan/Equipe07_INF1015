@@ -25,6 +25,22 @@ public:
 		this->color_ = COLOR.find(couleur)->second;
 	}
 
+	void setEnnemi(const std::string ennemi) {
+		this->ennemi_ = ennemi;
+	}
+
+	const std::string getEnnemi() {
+		return this->ennemi_;
+	}
+
+	void aouterAllie(const std::string nomAllie) {
+		this->allies_.push_back(nomAllie);
+	}
+
+	const std::vector<std::string> getAllies() {
+		return this->allies_;
+	}
+
 protected:
 	std::string ennemi_;
 	std::vector<std::string> allies_;
