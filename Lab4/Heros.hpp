@@ -9,9 +9,16 @@ class Heros : virtual public Personnage
 public:
 	Heros() = default;
 
-	Heros(const std::string nom, const std::string premiereApparition, const std::string ennemi) : Personnage(nom, premiereApparition), ennemi_(ennemi) {}
+	Heros(const std::string nom, const std::string premiereApparition, const std::string ennemi) :
+		Personnage(nom, premiereApparition),
+		ennemi_(ennemi)
+	{}
 
-	Heros(const Heros& h) : Personnage(h.nom_, h.titrePremiereApparition_), ennemi_(h.ennemi_), allies_(h.allies_) {}
+	Heros(const std::shared_ptr<Heros> h) :
+		Personnage(h->nom_, h->titrePremiereApparition_),
+		ennemi_(h->ennemi_),
+		allies_(h->allies_)
+	{}
 
 	void afficher() {
 		std::cout << color_ << " nom: " << nom_ << std::endl << "titre premiere appartition : " << titrePremiereApparition_ << std::endl << "Ennemi : " << ennemi_ << std::endl;

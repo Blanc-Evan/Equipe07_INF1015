@@ -8,7 +8,10 @@ class Personnage : public Afficheable {
 public:
 		Personnage() = default;
 
-		Personnage(const std::string nom, const std::string premiereAppartion) : nom_(nom), titrePremiereApparition_(premiereAppartion) {}
+		Personnage(const std::string nom, const std::string premiereAppartion) : 
+			nom_(nom),
+			titrePremiereApparition_(premiereAppartion)
+		{}
 
 		void setNom(const std::string nom) {
 			this->nom_ = nom;

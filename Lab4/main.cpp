@@ -1,5 +1,8 @@
 #include <fstream>
 #include "bibliotheque_cours.hpp"
+#include "Heros.hpp"
+#include "Vilain.hpp"
+#include "VilainHeros.hpp"
 
 using UInt8  = uint8_t;
 using UInt16 = uint16_t;
@@ -40,7 +43,7 @@ int main()
 	
 	// Trait de separation
 	static const string trait =
-		"═════════════════════════════════════════════════════════════════════════";
+		"-------------------------------------------------------------------------";
 
 	// Ouverture des fichiers binaires
 	ifstream fichierHeros("heros.bin", ios::binary);
@@ -49,5 +52,53 @@ int main()
 	fichierVilains.exceptions(ios::failbit);
 
 	//TODO: Votre code pour le main commence ici
+
+
+
+	std::vector<shared_ptr<Heros>> heros;
+	std::vector<shared_ptr<Vilain>> vilains;
+	std::vector<shared_ptr<Personnage>> personnages;
+
+
+	heros.push_back(make_shared<Heros>("michel", "je sais pas", "jean"));
+
+	vilains.push_back(make_shared<Vilain>("bernard", "je sais pas", "tuer claude"));
+
+	// TODO : Lecture et remplissage des vecteurs à partir des fichiers
 	
+	
+	for (auto& h : heros) {
+		h->changerCouleur("BLUE");
+		h->afficher();
+		cout << trait << endl;
+	}
+
+	for (auto& v : vilains) {
+		v->changerCouleur("RED");
+		v->afficher();
+		cout << trait << endl;
+	}
+
+	// Ajout à personnages
+
+	for (auto& h : heros) {
+		personnages.push_back(h);
+	}
+
+	for (auto& v : vilains) {
+		personnages.push_back(v);
+	}
+
+
+	// Affichage avec polymorphisme
+
+	for (auto& p : personnages) {
+		p->afficher();
+		cout << trait << endl;
+	}
+
+	unique_ptr<VilainHeros> vh = make_unique<VilainHeros>(vilains[0], heros[0]);
+
+	vh->afficher();
+
 }
