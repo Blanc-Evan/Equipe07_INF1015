@@ -8,9 +8,9 @@ class Personnage : public Afficheable {
 public:
 		Personnage() = default;
 
-		Personnage(const std::string nom, const std::string premiereAppartion) : 
+		Personnage(const std::string nom, const std::string parution) :
 			nom_(nom),
-			titrePremiereApparition_(premiereAppartion)
+			parution_(parution)
 		{}
 
 		void setNom(const std::string nom) {
@@ -21,16 +21,16 @@ public:
 			return this->nom_;
 		}
 
-		void setTitrePremiereAppartition(const std::string premiereAppartion) {
-			this->titrePremiereApparition_ = premiereAppartion;
+		void setParution(const std::string parution) {
+			this->parution_ = parution;
 		}
 
-		const std::string getTitrePremiereApparition() {
-			return this->titrePremiereApparition_;
+		const std::string getParution() {
+			return this->parution_;
 		}
 
 		void afficher() {
-			std::cout << color_ << " nom: " << nom_ << std::endl << "titre premiere appartition : " << titrePremiereApparition_ << std::endl;
+			std::cout << color_ << " nom: " << nom_ << std::endl << " Parution : " << parution_ << std::endl;
 		}
 
 		void changerCouleur(std::string couleur) {
@@ -39,6 +39,6 @@ public:
 
 protected:
 	std::string nom_;
-	std::string titrePremiereApparition_;
+	std::string parution_;
 };
 

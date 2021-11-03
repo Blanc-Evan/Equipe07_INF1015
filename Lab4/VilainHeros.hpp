@@ -10,15 +10,15 @@ public:
 	VilainHeros() = default;
 
 	VilainHeros(const std::shared_ptr<Vilain> v, const std::shared_ptr<Heros> h) : 
-		Personnage(v->getNom() + "-" + h->getNom(), v->getTitrePremiereApparition() + "-" + h->getTitrePremiereApparition()),
+		Personnage(v->getNom() + "-" + h->getNom(), v->getParution() + "-" + h->getParution()),
 		Vilain(v),
 		Heros(h),
-		missionSpeciale_(v->getObjetif() + " dans le monde de " + h->getTitrePremiereApparition())
+		missionSpeciale_(v->getObjetif() + " dans le monde de " + h->getParution())
 	{}
 
 
 	void afficher() {
-		std::cout << color_ << " nom: " << nom_ << std::endl << "titre premiere appartition : " << titrePremiereApparition_ << std::endl << "Ennemi : " << ennemi_ 
+		std::cout << color_ << " nom: " << nom_ << std::endl << " Parution : " << parution_ << std::endl << "Ennemi : " << ennemi_
 			<< std::endl << " Objectif : " << objectif_ << std::endl << " Mission speciale : " << missionSpeciale_ << std::endl;
 
 		for (auto allie : allies_) {

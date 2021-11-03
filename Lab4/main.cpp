@@ -52,19 +52,44 @@ int main()
 	fichierVilains.exceptions(ios::failbit);
 
 	//TODO: Votre code pour le main commence ici
-
-
-
 	std::vector<shared_ptr<Heros>> heros;
 	std::vector<shared_ptr<Vilain>> vilains;
 	std::vector<shared_ptr<Personnage>> personnages;
 
+	// Lecture Hero
 
-	// Test avec des objets déclarés et non lus
+	unsigned nHeros = lireUint16(fichierHeros);
 
-	heros.push_back(make_shared<Heros>("michel", "jeSaisPas", "jean"));
+	for (int i = 0; i < nHeros; i++) {
+		vector<string> allies;
+		string nom = lireString(fichierHeros);
+		string parution = lireString(fichierHeros);
+		string ennemi = lireString(fichierHeros);
 
-	vilains.push_back(make_shared<Vilain>("bernard", "jeSaisPas", "tuer claude"));
+		shared_ptr<Heros> h = make_shared<Heros>(nom, parution, ennemi);
+
+		int n = lireUint8(fichierHeros);
+		for (int i = 0; i < n; i++) 
+			h->ajouterAllie(lireString(fichierHeros));
+		
+		heros.push_back(h);
+	}
+	
+
+	// Lecture Vilain
+
+	unsigned nVilain = lireUint16(fichierVilains);
+
+	for (int i = 0; i < nHeros; i++) {
+		string nom = lireString(fichierVilains);
+		string parution = lireString(fichierVilains);
+		string objectif = lireString(fichierVilains);
+
+		shared_ptr<Vilain> v = make_shared<Vilain>(nom, parution, objectif);
+		
+		vilains.push_back(v);
+	}
+
 
 	// TODO : Lecture et remplissage des vecteurs à partir des fichiers
 	
