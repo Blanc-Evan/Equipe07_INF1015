@@ -17,8 +17,9 @@ public:
 	VilainHeros(const VilainHeros& vh) : Personnage(vh.Personnage::nom_, vh.Personnage::titrePremiereApparition_),
 		Vilain(vh.Vilain::nom_, vh.Vilain::titrePremiereApparition_, vh.Vilain::objectif_),
 		Heros(vh.Heros::nom_, vh.Heros::titrePremiereApparition_, vh.Heros::ennemi_),
-		nom_(Vilain::getNom() + "-" + Heros::getNom()),
-		titrePremiereAppartition_(Vilain::getTitrePremiereApparition() + "-" + Heros::getTitrePremiereApparition()){}
+		nom_(vh.Vilain::nom_ + "-" + vh.Heros::nom_),
+		titrePremiereAppartition_(vh.Vilain::titrePremiereApparition_ + "-" + vh.Heros::titrePremiereApparition_),
+		missionSpeciale_(vh.Vilain::objectif_ + " dans le monde de " + vh.Heros::titrePremiereApparition_) {}
 
 
 	void afficher() {
@@ -37,6 +38,7 @@ public:
 private:
 	std::string nom_;
 	std::string titrePremiereAppartition_;
+	std::string missionSpeciale_;
 
 };
 
