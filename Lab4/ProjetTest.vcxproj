@@ -161,9 +161,7 @@
   <ItemGroup>
     <ClCompile Include="bibliotheque_cours\bibliotheque_cours.cpp" />
     <ClCompile Include="bibliotheque_cours\verification_allocation.cpp" />
-    <ClCompile Include="Hero.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Personnage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />
@@ -174,9 +172,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Afficheable.hpp" />
-    <ClInclude Include="Hero.hpp" />
+    <ClInclude Include="Heros.hpp" />
     <ClInclude Include="Personnage.hpp" />
     <ClInclude Include="Vilain.hpp" />
+    <ClInclude Include="VilainHeros.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
