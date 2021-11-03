@@ -27,11 +27,11 @@ public:
 		this->color_ = COLOR.find(couleur)->second;
 	}
 
-	void setEnnemi(const std::string objectif) {
+	void setObjectif(const std::string objectif) {
 		this->objectif_ = objectif;
 	}
 
-	const std::string getEnnemi() {
+	const std::string getObjetif() {
 		return this->objectif_;
 	}
 

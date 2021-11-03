@@ -60,12 +60,15 @@ int main()
 	std::vector<shared_ptr<Personnage>> personnages;
 
 
-	heros.push_back(make_shared<Heros>("michel", "je sais pas", "jean"));
+	// Test avec des objets déclarés et non lus
 
-	vilains.push_back(make_shared<Vilain>("bernard", "je sais pas", "tuer claude"));
+	heros.push_back(make_shared<Heros>("michel", "jeSaisPas", "jean"));
+
+	vilains.push_back(make_shared<Vilain>("bernard", "jeSaisPas", "tuer claude"));
 
 	// TODO : Lecture et remplissage des vecteurs à partir des fichiers
 	
+
 	
 	for (auto& h : heros) {
 		h->changerCouleur("BLUE");

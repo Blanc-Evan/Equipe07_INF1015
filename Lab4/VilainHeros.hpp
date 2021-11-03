@@ -12,7 +12,8 @@ public:
 	VilainHeros(const std::shared_ptr<Vilain> v, const std::shared_ptr<Heros> h) : 
 		Personnage(v->getNom() + "-" + h->getNom(), v->getTitrePremiereApparition() + "-" + h->getTitrePremiereApparition()),
 		Vilain(v),
-		Heros(h)
+		Heros(h),
+		missionSpeciale_(v->getObjetif() + " dans le monde de " + h->getTitrePremiereApparition())
 	{}
 
 
