@@ -1,10 +1,7 @@
-
-Lab3/.vs/ProjetTD3/v16/ipch/AutoPCH/781da660af691731/LECTUREFICHIERJEUX.ipch
-Lab3/.vs/ProjetTD3/v16/Browse.VC.db-wal
-Lab3/.vs/ProjetTD3/v16/Browse.VC.db-shm
-Lab3/.vs/ProjetTD3/v16/Browse.VC.db
-Lab3/.vs/ProjetTD3/v16/Browse.VC.opendb
-Lab3/.vs/ProjetTD3/v16/Browse.VC.db
-Lab3/.vs/ProjetTD3/v16/ipch/AutoPCH/781da660af691731/LECTUREFICHIERJEUX.ipch
-Lab3/.vs/ProjetTD3/v16/ipch/AutoPCH/781da660af691731/LECTUREFICHIERJEUX.ipch
-Lab3/.vs/ProjetTD3/v16/Browse.VC.db
+* .db
+* .ipch
+* .exe
+* .log
+* .tlog
+* .pdb
+*.obj
