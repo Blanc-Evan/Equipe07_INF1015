@@ -21,7 +21,7 @@ public:
 	{}
 
 	void afficher() {
-		std::cout << color_ << " nom: " << nom_ << std::endl << " Parution : " << parution_ << std::endl << "Ennemi : " << ennemi_ << std::endl;
+		std::cout << color_ << " nom: " << nom_ << std::endl << " Parution : " << parution_ << std::endl << "Ennemi : " << ennemi_ << std::endl << "Alliés : " << std::endl;
 
 		for (auto allie : allies_) {
 			std::cout << color_ << allie << std::endl;

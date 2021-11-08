@@ -60,7 +60,7 @@ int main()
 
 	unsigned nHeros = lireUint16(fichierHeros);
 
-	for (int i = 0; i < nHeros; i++) {
+	for (unsigned int i = 0; i < nHeros; i++) {
 		vector<string> allies;
 		string nom = lireString(fichierHeros);
 		string parution = lireString(fichierHeros);
@@ -68,8 +68,8 @@ int main()
 
 		shared_ptr<Heros> h = make_shared<Heros>(nom, parution, ennemi);
 
-		int n = lireUint8(fichierHeros);
-		for (int i = 0; i < n; i++) 
+		unsigned int n = lireUint8(fichierHeros);
+		for (unsigned int j = 0; j < n; j++) 
 			h->ajouterAllie(lireString(fichierHeros));
 		
 		heros.push_back(h);
@@ -80,7 +80,7 @@ int main()
 
 	unsigned nVilain = lireUint16(fichierVilains);
 
-	for (int i = 0; i < nHeros; i++) {
+	for (unsigned int i = 0; i < nVilain; i++) {
 		string nom = lireString(fichierVilains);
 		string parution = lireString(fichierVilains);
 		string objectif = lireString(fichierVilains);
@@ -95,13 +95,13 @@ int main()
 	
 
 	
-	for (auto& h : heros) {
+	for (auto h : heros) {
 		h->changerCouleur("BLUE");
 		h->afficher();
 		cout << trait << endl;
 	}
 
-	for (auto& v : vilains) {
+	for (auto v : vilains) {
 		v->changerCouleur("RED");
 		v->afficher();
 		cout << trait << endl;
@@ -109,18 +109,18 @@ int main()
 
 	// Ajout à personnages
 
-	for (auto& h : heros) {
+	for (auto h : heros) {
 		personnages.push_back(h);
 	}
 
-	for (auto& v : vilains) {
+	for (auto v : vilains) {
 		personnages.push_back(v);
 	}
 
 
 	// Affichage avec polymorphisme
 
-	for (auto& p : personnages) {
+	for (auto p : personnages) {
 		p->afficher();
 		cout << trait << endl;
 	}

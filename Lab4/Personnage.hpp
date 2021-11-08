@@ -29,14 +29,15 @@ public:
 			return this->parution_;
 		}
 
+		
 		void afficher() {
 			std::cout << color_ << " nom: " << nom_ << std::endl << " Parution : " << parution_ << std::endl;
 		}
-
+		
 		void changerCouleur(std::string couleur) {
 			this->color_ = COLOR.find(couleur)->second;
 		}
-
+		
 protected:
 	std::string nom_;
 	std::string parution_;

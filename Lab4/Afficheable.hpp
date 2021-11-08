@@ -5,15 +5,15 @@ class Afficheable {
 
 public:
 
-	void afficher();
+	virtual void afficher() = 0;
 
-	void changerCouleur(std::string couleur);
+	virtual void changerCouleur(std::string couleur) = 0;
 
 protected:
 	const std::map<std::string, std::string> COLOR{
-	{"WHITE", "\033[30m"},
-	{"RED", "\033[91m"},
-	{"BLUE", "\033[94m"}
+		{"WHITE", "\033[30m"},
+		{"RED", "\033[91m"},
+		{"BLUE", "\033[94m"}
 	};
 
 	std::string color_ = "\033[0m";
