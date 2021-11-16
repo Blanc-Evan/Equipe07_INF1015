@@ -6,23 +6,24 @@ class Iterateur
 {
 public:
 	//TODO: Constructeur(s).
-	void avancer()
-	{
+	Iterateur(Noeud<T>* position = Noeud<T>::past_end) : position_(position) {}
+
+	void avancer()	{
 		Expects(position_ != nullptr);
-		//TODO: changez la position de l'itérateur pour le noeud suivant
+		position_ = position_->next_;
 	}
-	void reculer()
-	{
+	void reculer()	{
 		//NOTE: On ne demande pas de supporter de reculer à partir de l'itérateur end().
 		Expects(position_ != nullptr);
-		//TODO: Changez la position de l'itérateur pour le noeud précédent
+		position_ = position_->previous_;
 	}
-	T& operator*()
-	{
+
+	T& operator*()	{
 		return position_->donnee_;
 	}
 	//TODO: Ajouter ce qu'il manque pour que les boucles sur intervalles fonctionnent sur une ListeLiee.
 	bool operator==(const Iterateur<T>& it) const = default;
+
 private:
 	Noeud<T>* position_;
 	friend class ListeLiee<T>;
