@@ -137,24 +137,43 @@ int main()
 	//}
 
 	//TODO: Transférez les héros du vecteur heros dans une ListeLiee.
+	ListeLiee<Heros> listHeros = ListeLiee<Heros>();
+
+	for (auto h : heros) listHeros.push_back(h);
 
 	//TODO: Créez un itérateur sur la liste liée à la position du héros Alucard
 	// Servez-vous de la fonction trouverParNom définie plus haut
+	Iterateur<Heros> it_hero = trouverParNom(listHeros, "Alucard");
 
 	//TODO: Servez-vous de l'itérateur créé précédemment pour trouver l'héroine Aya Brea,
 	// en sachant qu'elle se trouve plus loin dans la liste.
+	while ((*it_hero).getNom() != "Aya Brea") it_hero.avancer();
 
 	//TODO: Ajouter un hero bidon à la liste avant Aya Brea en vous servant de l'itérateur.
 	//TODO: Assurez-vous que la taille de la liste est correcte après l'ajout.
+	unsigned taille = listHeros.size();
+	Heros h = Heros("blabla", "blibli", "blublu");
+	listHeros.insert(it_hero, h);
+	assert(listHeros.size() == taille + 1);
 
 	//TODO: Reculez votre itérateur jusqu'au héros Mario et effacez-le en utilisant l'itérateur, puis affichez le héros suivant dans la liste (devrait êter "Naked Snake/John").
 	//TODO: Assurez-vous que la taille de la liste est correcte après le retrait.
+	while ((*it_hero).getNom() != "Mario") it_hero.reculer();
+	taille = listHeros.size();
+	listHeros.erase(it_hero);
+	assert(listHeros.size() == taille - 1);
 
 	//TODO: Effacez le premier élément de la liste.
+	listHeros.erase(listHeros.begin());
 
 	//TODO: Affichez votre liste de héros en utilisant un itérateur. La liste débute
 	// avec le héros Randi et n'a pas Mario.
 	// Servez-vous des methodes begin et end de la liste...
+	cout << trait << endl;
+	Iterateur<Heros> fin = listHeros.end();
+	for (Iterateur<Heros> pos = listHeros.begin(); pos != fin; pos.avancer()) {
+		(*pos).afficher(cout);
+	}
 
 	//TODO: Refaite le même affichage mais en utilisant une simple boucle "for" sur intervalle.
 	
