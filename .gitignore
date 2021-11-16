@@ -5,3 +5,10 @@
 * .tlog
 * .pdb
 *.obj
+Lab5/include/gsl/gsl_byte
+*.obj
+*.log
+*.tlog
+*.opendb
+*.db-shm
+*.db-wal
