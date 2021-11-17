@@ -11,6 +11,7 @@
 #include "ListeLiee.hpp"
 #include <fstream>
 #include <vector>
+#include <set>
 #include <functional>
 #include "cppitertools/range.hpp"
 #include "bibliotheque_cours.hpp"
@@ -78,6 +79,12 @@ Iterateur<T> trouverParNom(ListeLiee<T>& liste, const string& nom)
 	}
 	return fin;
 }
+
+struct Compare {
+	bool operator() (const Heros& h1, const Heros& h2) const {
+		return h1.getNom() < h2.getNom();
+	}
+};
 
 int main()
 {
@@ -178,6 +185,19 @@ int main()
 	//TODO: Refaite le même affichage mais en utilisant une simple boucle "for" sur intervalle.
 	
 	//TODO: Utilisez un conteneur pour avoir les héros en ordre alphabétique (voir point 2 de l'énoncé).
+	set myHeroSet = set<Heros, Compare>(); // O(logn)
 
+	fin = listHeros.end();
+	for (Iterateur<Heros> pos = listHeros.begin(); pos != fin; pos.avancer()) {
+		myHeroSet.insert(*pos);
+	}
+
+	cout << trait << endl;
+
+	for (Heros h : myHeroSet) {
+		h.afficher(cout);
+	}
+
+	
 	//TODO: Assurez-vous de n'avoir aucune ligne non couverte dans les classes pour la liste liée.  Il peut y avoir des lignes non couvertes dans les personnages...
 }
