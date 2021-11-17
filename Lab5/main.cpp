@@ -198,6 +198,7 @@ int main()
 		h.afficher(cout);
 	}
 
+	// La version avec le Set est plus rapide car en O de Log de n alors que la Liste est en O de 1
 	
 	//TODO: Assurez-vous de n'avoir aucune ligne non couverte dans les classes pour la liste liée.  Il peut y avoir des lignes non couvertes dans les personnages...
 }
