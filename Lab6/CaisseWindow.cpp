@@ -6,6 +6,7 @@
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QButtonGroup>
+#include <qlistwidget.h>
 #include <QLabel>
 #include <QString>
 #include <QVariant>
@@ -29,15 +30,12 @@ CaisseWindow::CaisseWindow(QWidget* parent) :
 
 	layout->setSpacing(10);
 
-	// @ brief Description and price
-	QLineEdit* descriptionEdit,* prixEdit;
-
 	QLabel* descriptionLabel = new QLabel;
 	descriptionLabel->setText("Description:");
 
 	descriptionEdit = new QLineEdit(this);
 	descriptionEdit->setPlaceholderText("Description");
-	descriptionEdit->setFixedSize(4000, 200);
+	descriptionEdit->setFixedSize(400, 50);
 	descriptionEdit->setFocus();
 
 	QHBoxLayout* descriptionLayout = new QHBoxLayout;
@@ -49,7 +47,7 @@ CaisseWindow::CaisseWindow(QWidget* parent) :
 
 	prixEdit = new QLineEdit(this);
 	prixEdit->setPlaceholderText("Prix");
-	prixEdit->setFixedSize(4000, 200);
+	prixEdit->setFixedSize(400, 50);
 	prixEdit->setFocus();
 
 	QHBoxLayout* prixLayout = new QHBoxLayout;
@@ -75,12 +73,31 @@ CaisseWindow::CaisseWindow(QWidget* parent) :
 	resetButton = new QPushButton(this);
 	resetButton->setText("RESET");
 	connect(resetButton, SIGNAL(resetPressed), &caisse_, SLOT(reset()));
-	
+
 	buttonLayout->addWidget(ajouterButton);
 	buttonLayout->addWidget(retirerButton);
 	buttonLayout->addWidget(resetButton);
 
+	QVBoxLayout* listLayout = new QVBoxLayout;
+	QLabel* listLabel = new QLabel;
+	listLabel->setText("Liste des éléments");
+	listLayout->addWidget(listLabel);
+	listWidget = new QListWidget;
+	listWidget->setSortingEnabled(true);
+	connect(listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(selectItem(QListWidgetItem*)));
+	listLayout->addWidget(listWidget);
+	listLayout->addLayout(buttonLayout);
 
+	layoutPrincipal->addLayout(descriptionLayout);
+	layoutPrincipal->addLayout(prixLayout);
+	layoutPrincipal->addLayout(listLayout);
+
+	
+	QWidget* widget = new QWidget;
+	widget->setLayout(layoutPrincipal);
+
+	setCentralWidget(widget);
+	setWindowTitle("Caisse Enregistreuse de Evan et Ahmed");
 }
 
 void CaisseWindow::setDescription(QString description) {
@@ -98,7 +115,7 @@ void CaisseWindow::setPrix(float prix) {
 }
 
 void CaisseWindow::ajouter() {
-
+	
 }
 
 void CaisseWindow::retirer() {
@@ -106,5 +123,9 @@ void CaisseWindow::retirer() {
 }
 
 void CaisseWindow::reset() {
+
+}
+
+void CaisseWindow::selectItem(QListWidgetItem* item) {
 
 }
