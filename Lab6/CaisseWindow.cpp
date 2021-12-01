@@ -68,10 +68,12 @@ CaisseWindow::CaisseWindow(QWidget* parent) :
 
 	retirerButton = new QPushButton(this);
 	retirerButton->setText("RETIRER");
+	retirerButton->setDisabled(true);
 	connect(retirerButton, SIGNAL(retirerPressed), &caisse_, SLOT(retirer()));
 	
 	resetButton = new QPushButton(this);
 	resetButton->setText("RESET");
+	resetButton->setDisabled(true);
 	connect(resetButton, SIGNAL(resetPressed), &caisse_, SLOT(reset()));
 
 	buttonLayout->addWidget(ajouterButton);
@@ -96,6 +98,7 @@ CaisseWindow::CaisseWindow(QWidget* parent) :
 	QWidget* widget = new QWidget;
 	widget->setLayout(layoutPrincipal);
 
+	setFixedSize(600, 800);
 	setCentralWidget(widget);
 	setWindowTitle("Caisse Enregistreuse de Evan et Ahmed");
 }
