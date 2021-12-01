@@ -1,8 +1,9 @@
 ﻿#pragma once
-// La Vue-Controlleur pour calculatrice simple.
-// Par Francois-R.Boyer@PolyMtl.ca
+// La Vue-Controlleur pour la caisse enregistreuse.
+// Par evan.blanc@polymtl.ca & ahmed.zgahl@polymtml.ca
 
 #include "Caisse.hpp"
+#include "Item.hpp";
 #pragma warning(push, 0) // Sinon Qt fait des avertissements à /W4.
 #include <QMainWindow>
 #include <QPushButton>
@@ -10,6 +11,7 @@
 #include <QString>
 #include <qlistwidget.h>
 #include <QLabel>
+#include <qcheckbox.h>
 #pragma pop()
 
 class CaisseWindow : public QMainWindow {
@@ -22,6 +24,7 @@ public:
 public slots:
 	void setDescription(QString);
 	void setPrix(float);
+	void setTaxable(bool);
 	void ajouter();
 	void retirer();
 	void reset();
@@ -30,6 +33,7 @@ public slots:
 signals:
 	void descriptionChanged(QString);
 	void prixChanged(float);
+	void taxableChanged(bool);
 	void ajouterPressed();
 	void retirerPressed();
 	void resetPressed();
@@ -37,10 +41,16 @@ signals:
 
 private:
 		QString description_;
-		float prix_;
+		float prix_ = 0.0;
+		bool taxable_ = true;
 
 		QListWidget* listWidget;
 		QLineEdit* descriptionEdit, * prixEdit;
-	
+		
+		QLabel* descriptionLabel;
+		QLabel* prixLabel;
+		QLabel* taxableLabel;
+
+	Item* selectedItem;
 	Caisse caisse_;  // Le Modèle (pourrait être un pointeur mais pas nécessaire dans ce cas).
 };
