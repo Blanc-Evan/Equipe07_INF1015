@@ -20,7 +20,7 @@ class CaisseWindow : public QMainWindow {
 public:
 	CaisseWindow(QWidget* parent = nullptr);
 	~CaisseWindow() override = default;
-	 
+
 public slots:
 	void setDescription(QString);
 	void setPrix(float);
@@ -40,16 +40,22 @@ signals:
 	void itemClicked(QListWidgetItem*);
 
 private:
-		QString description_;
-		float prix_ = 0.0;
-		bool taxable_ = true;
+	void actualiserListe();
 
-		QListWidget* listWidget;
-		QLineEdit* descriptionEdit, * prixEdit;
-		
-		QLabel* descriptionLabel;
-		QLabel* prixLabel;
-		QLabel* taxableLabel;
+	QString description_;
+	float prix_ = 0.0;
+	bool taxable_ = true;
+
+	QListWidget* listWidget;
+	QLineEdit* descriptionEdit, * prixEdit;
+
+	QCheckBox* taxableCheck;
+
+	QPushButton* ajouterButton, * retirerButton, * resetButton;
+
+	QLabel* descriptionLabel;
+	QLabel* prixLabel;
+	QLabel* taxableLabel;
 
 	Item* selectedItem;
 	Caisse caisse_;  // Le Modèle (pourrait être un pointeur mais pas nécessaire dans ce cas).

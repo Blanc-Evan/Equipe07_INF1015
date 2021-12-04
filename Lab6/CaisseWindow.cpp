@@ -22,7 +22,7 @@ CaisseWindow::CaisseWindow(QWidget* parent) :
 	// Si on objet n'a pas encore de parent on lui met "this" comme parent en attendant, si possible, pour s'assurer que tous les pointeurs sont gérés par un delete automatique en tout temps sans utiliser de unique_ptr.
 	auto widgetPrincipal = new QWidget(this);
 	auto layoutPrincipal = new QVBoxLayout(widgetPrincipal);  // Donner un parent à un layout est comme un setLayout.
-	
+
 	auto layout = new QHBoxLayout(); // Pas possible de donner directement le parent au layout (le constructeur prend un QWidget* et un layout n'en est pas un; on ne peut pas mettre un parent qui a déjà un layout; si on met on parent temporaire, addLayout n'accepte pas de changer le parent).
 	layoutPrincipal->addLayout(layout);
 
@@ -55,7 +55,7 @@ CaisseWindow::CaisseWindow(QWidget* parent) :
 	QLabel* taxableLabel = new QLabel;
 	taxableLabel->setText("Taxable");
 
-	QCheckBox* taxableCheck = new QCheckBox;
+	taxableCheck = new QCheckBox;
 	taxableCheck->setChecked(true);
 
 	QHBoxLayout* taxableLayout = new QHBoxLayout;
@@ -67,7 +67,6 @@ CaisseWindow::CaisseWindow(QWidget* parent) :
 	QObject::connect(taxableCheck, SIGNAL(taxableChanged(bool)), &caisse_, SLOT(setTaxable(bool)));
 
 
-	QPushButton* ajouterButton, * retirerButton, * resetButton;
 	QHBoxLayout* buttonLayout = new QHBoxLayout;
 
 	ajouterButton = new QPushButton(this);
@@ -78,7 +77,7 @@ CaisseWindow::CaisseWindow(QWidget* parent) :
 	retirerButton->setText("RETIRER");
 	retirerButton->setDisabled(true);
 	connect(retirerButton, SIGNAL(retirerPressed), &caisse_, SLOT(retirer()));
-	
+
 	resetButton = new QPushButton(this);
 	resetButton->setText("RESET");
 	resetButton->setDisabled(true);
@@ -108,7 +107,7 @@ CaisseWindow::CaisseWindow(QWidget* parent) :
 	layoutPrincipal->addLayout(listLayout);
 
 
-	
+
 	QWidget* widget = new QWidget;
 	widget->setLayout(layoutPrincipal);
 
@@ -133,7 +132,10 @@ void CaisseWindow::setPrix(float prix) {
 
 void CaisseWindow::ajouter() {
 
+	Item* newItem = new Item(description_.toStdString(), prix_);
+	caisse_.addItem(newItem);
 
+	actualiserListe();
 }
 
 void CaisseWindow::retirer() {
@@ -142,15 +144,27 @@ void CaisseWindow::retirer() {
 
 void CaisseWindow::reset() {
 
+	caisse_.resetList();
+
+	descriptionEdit->setText("");
+	prixEdit->setText("");
+	taxableCheck->setChecked(true);
+	retirerButton->setDisabled(true);
+	resetButton->setDisabled(true);
+	
+	actualiserListe();
 }
 
-void CaisseWindow::selectItem(QListWidgetItem* item) {
-
-}
 
 void CaisseWindow::setTaxable(bool value) {
 	if (taxable_ != value) {
 		taxable_ = value;
 		emit taxableChanged(value);
 	}
+}
+
+void CaisseWindow::actualiserListe() {
+	if (caisse_.getList().empty()) listWidget->clear();
+	return;
+
 }
