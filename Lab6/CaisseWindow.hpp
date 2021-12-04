@@ -43,11 +43,11 @@ private:
 	void actualiserListe();
 
 	QString description_;
-	QString prix_ = "0.0";
+	QString prix_;
 	bool taxable_ = true;
 
 	QListWidget* listWidget;
-	QLineEdit* descriptionEdit, * prixEdit;
+	QLineEdit* descriptionEdit, * prixEdit, * totalAvanTaxeEdit, *  totalTaxeEdit, * totalEdit;
 
 	QCheckBox* taxableCheck;
 
@@ -56,6 +56,9 @@ private:
 	QLabel* descriptionLabel;
 	QLabel* prixLabel;
 	QLabel* taxableLabel;
+	QLabel* totalAvanTaxeLabel;
+	QLabel* totalTaxeLabel;
+	QLabel* totalLabel;
 
 	Item* selectedItem;
 	Caisse caisse_;  // Le Modèle (pourrait être un pointeur mais pas nécessaire dans ce cas).

@@ -7,15 +7,15 @@ class Item {
 
 public:
 	Item() = default;
-	Item(string desc, float prix) {
+	Item(string desc, string prix) {
 		this->description_ = desc;
 		this->prix_ = prix;
 	}
 
 	string getDescprition();
-	float getPrix();
+	string getPrix();
 
 private:
 	string description_;
-	float prix_;
+	string prix_;
 };

@@ -19,9 +19,12 @@ public:
 	std::list<Item*>& getList();
 	void removeItem(Item* item);
 	void resetList();
+	float getPrixTotal() {
+		return this->prixTotal_;
+	}
 
 private:
 	//nous avons privilégié la list pour ca fonction remove_if (Q2 du modèle)
 	std::list<Item*> list;
-
+	float prixTotal_ = 0.0;
 };

@@ -11,7 +11,7 @@ std::list<Item*>& Caisse::getList() {
 
 void Caisse::removeItem(Item* item) {
 	for (auto&& i : list) {
-		list.remove_if([&]() {return item->getDescprition() == i->getDescprition(); });
+		list.remove_if([&](bool b) {return item->getDescprition() == i->getDescprition(); });
 	}
 }
 
