@@ -1,6 +1,6 @@
 ﻿#pragma once
 // La Vue-Controlleur pour la caisse enregistreuse.
-// Par evan.blanc@polymtl.ca & ahmed.zgahl@polymtml.ca
+// Par evan.blanc@polymtl.ca & ahmed.zghal@polymtml.ca
 
 #include "Caisse.hpp"
 #include "Item.hpp";

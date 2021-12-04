@@ -6,7 +6,7 @@
 #include <qlistwidget.h>
 #include <QLabel>
 #include <QString>
-#include <Frame>
+#include <qframe.h>
 #include <QVariant>
 #pragma pop()
 #include <iostream>

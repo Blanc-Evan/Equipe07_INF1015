@@ -1,3 +1,5 @@
+// La Vue-Controlleur pour la caisse enregistreuse.
+// Par evan.blanc@polymtl.ca & ahmed.zghal@polymtml.ca
 #include "Caisse.hpp"
 #include "CaisseWindow.hpp"
 
