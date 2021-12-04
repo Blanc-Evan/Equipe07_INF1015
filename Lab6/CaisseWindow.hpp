@@ -23,7 +23,7 @@ public:
 
 public slots:
 	void setDescription(QString);
-	void setPrix(float);
+	void setPrix(QString);
 	void setTaxable(bool);
 	void ajouter();
 	void retirer();
@@ -32,7 +32,7 @@ public slots:
 
 signals:
 	void descriptionChanged(QString);
-	void prixChanged(float);
+	void prixChanged(QString);
 	void taxableChanged(bool);
 	void ajouterPressed();
 	void retirerPressed();
@@ -43,7 +43,7 @@ private:
 	void actualiserListe();
 
 	QString description_;
-	float prix_ = 0.0;
+	QString prix_ = "0.0";
 	bool taxable_ = true;
 
 	QListWidget* listWidget;

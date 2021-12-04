@@ -123,7 +123,7 @@ void CaisseWindow::setDescription(QString description) {
 	}
 }
 
-void CaisseWindow::setPrix(float prix) {
+void CaisseWindow::setPrix(QString prix) {
 	if (prix != prix_) {
 		prix_ = prix;
 		emit prixChanged(prix);
@@ -139,7 +139,8 @@ void CaisseWindow::ajouter() {
 }
 
 void CaisseWindow::retirer() {
-
+	caisse_.removeItem(selectedItem);
+	actualiserListe();
 }
 
 void CaisseWindow::reset() {
@@ -164,7 +165,19 @@ void CaisseWindow::setTaxable(bool value) {
 }
 
 void CaisseWindow::actualiserListe() {
-	if (caisse_.getList().empty()) listWidget->clear();
-	return;
 
+	if (caisse_.getList().empty()) {
+		listWidget->clear();
+		return;
+	}
+
+	for (auto&& i : caisse_.getList()) {
+		QListWidgetItem* item = new QListWidgetItem(
+			QString::fromStdString(i->getDescprition()),
+			listWidget
+		);
+
+		item->setData(Qt::UserRole, QVariant::fromValue<Item*>(i));
+		listWidget->addItem(item);
+	}
 }

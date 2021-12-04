@@ -21,6 +21,7 @@ public:
 	void resetList();
 
 private:
+	//nous avons privilégié la list pour ca fonction remove_if (Q2 du modèle)
 	std::list<Item*> list;
 
 };
