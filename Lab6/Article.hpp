@@ -3,15 +3,11 @@
 #include <string>
 
 using namespace std;
-class Item {
+class Article {
 
 public:
-	Item() = default;
-	Item(string desc, string prix) {
-		this->description_ = desc;
-		this->prix_ = prix;
-	}
-
+	Article() = default;
+	Article(string desc, string prix);
 	string getDescprition();
 	string getPrix();
 

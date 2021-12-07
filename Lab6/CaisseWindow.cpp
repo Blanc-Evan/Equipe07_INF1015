@@ -30,7 +30,7 @@ CaisseWindow::CaisseWindow(QWidget* parent) :
 
 	descriptionLabel = new QLabel;
 	descriptionLabel->setText("Description:");
-
+	
 	descriptionEdit = new QLineEdit(this);
 	descriptionEdit->setPlaceholderText("Description");
 	descriptionEdit->setFixedSize(400, 50);
@@ -62,26 +62,26 @@ CaisseWindow::CaisseWindow(QWidget* parent) :
 	taxableLayout->addWidget(taxableLabel);
 	taxableLayout->addWidget(taxableCheck);
 
-	QObject::connect(descriptionEdit, SIGNAL(descriptionChanged(QString)), &caisse_, SLOT(setDescription(QString)));
-	QObject::connect(prixEdit, SIGNAL(prixChanged(QString)), &caisse_, SLOT(setPrix(QString)));
-	QObject::connect(taxableCheck, SIGNAL(taxableChanged(bool)), &caisse_, SLOT(setTaxable(bool)));
+	QObject::connect(descriptionEdit, &QLineEdit::textChanged, this, [&]() {setDescription(descriptionEdit->text()); });
+	QObject::connect(prixEdit, &QLineEdit::textChanged, this, [&]() {setPrix(prixEdit->text()); });
+	QObject::connect(taxableCheck, &QCheckBox::stateChanged, this, [&]() {setTaxable(taxableCheck->isChecked()); });
 
 
 	QHBoxLayout* buttonLayout = new QHBoxLayout;
 
 	ajouterButton = new QPushButton(this);
 	ajouterButton->setText("AJOUTER");
-	connect(ajouterButton, SIGNAL(ajouterPressed()), &caisse_, SLOT(ajouter()));
+	QObject::connect(ajouterButton, &QPushButton::released, this, [&]() {ajouter(); });
 
 	retirerButton = new QPushButton(this);
 	retirerButton->setText("RETIRER");
 	retirerButton->setDisabled(true);
-	connect(retirerButton, SIGNAL(retirerPressed()), &caisse_, SLOT(retirer()));
+	QObject::connect(retirerButton, &QPushButton::released, this, [&]() {retirer(); });
 
 	resetButton = new QPushButton(this);
 	resetButton->setText("RESET");
 	resetButton->setDisabled(true);
-	connect(resetButton, SIGNAL(resetPressed()), &caisse_, SLOT(reset()));
+	QObject::connect(resetButton, &QPushButton::released, this, [&]() {reset(); });
 
 	buttonLayout->addWidget(ajouterButton);
 	buttonLayout->addWidget(retirerButton);
@@ -93,7 +93,8 @@ CaisseWindow::CaisseWindow(QWidget* parent) :
 	listLayout->addWidget(listLabel);
 	listWidget = new QListWidget;
 	listWidget->setSortingEnabled(true);
-	connect(listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(selectItem(QListWidgetItem*)));
+	QObject::connect(listWidget, &QListWidget::itemClicked, this, [&]() {selectItem(listWidget->selectedItems()); });
+
 	listLayout->addWidget(listWidget);
 	listLayout->addLayout(buttonLayout);
 
@@ -181,15 +182,14 @@ void CaisseWindow::setPrix(QString prix) {
 }
 
 void CaisseWindow::ajouter() {
-
-	Item* newItem = new Item(description_.toStdString(), prix_.toStdString());
-	caisse_.addItem(newItem);
-	emit ajouterPressed();
+	cout << "ajouter du controller called";
+	Article* newArticle = new Article(description_.toStdString(), prix_.toStdString()); // TODO: mettre dans le model
+	caisse_.addArticle(newArticle);
 	actualiserListe();
 }
 
 void CaisseWindow::retirer() {
-	caisse_.removeItem(selectedItem);
+	caisse_.removeArticle(selectedArticle);
 	emit retirerPressed();
 	actualiserListe();
 }
@@ -219,6 +219,6 @@ void CaisseWindow::actualiserListe() {
 
 }
 
-void CaisseWindow::selectItem(QListWidgetItem*) {
+void CaisseWindow::selectItem(QList<QListWidgetItem*>) {
 
 }

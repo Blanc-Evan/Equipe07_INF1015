@@ -1,15 +1,15 @@
 ﻿#include "Caisse.hpp"
 
-void Caisse::addItem(Item* item) {
+void Caisse::addArticle(Article* item) {
 	list.push_back(item);
-	cout << "item added :" + item->getDescprition();
+	cout << "item added :" + item->getDescprition() << endl;
 }
 
-std::list<Item*>& Caisse::getList() {
+std::list<Article*>& Caisse::getList() {
 	return list;
 }
 
-void Caisse::removeItem(Item* item) {
+void Caisse::removeArticle(Article* item) {
 	for (auto&& i : list) {
 		list.remove_if([&](bool b) {return item->getDescprition() == i->getDescprition(); });
 	}

@@ -3,7 +3,7 @@
 // Par evan.blanc@polymtl.ca & ahmed.zghal@polymtml.ca
 
 #include "Caisse.hpp"
-#include "Item.hpp";
+#include "Article.hpp";
 #pragma warning(push, 0) // Sinon Qt fait des avertissements à /W4.
 #include <QMainWindow>
 #include <QPushButton>
@@ -28,7 +28,7 @@ public slots:
 	void ajouter();
 	void retirer();
 	void reset();
-	void selectItem(QListWidgetItem*);
+	void selectItem(QList<QListWidgetItem*>);
 
 signals:
 	void descriptionChanged(QString);
@@ -37,7 +37,7 @@ signals:
 	void ajouterPressed();
 	void retirerPressed();
 	void resetPressed();
-	void itemClicked(QListWidgetItem*);
+	void itemClicked(QList<QListWidgetItem*>);
 
 private:
 	void actualiserListe();
@@ -60,6 +60,6 @@ private:
 	QLabel* totalTaxeLabel;
 	QLabel* totalLabel;
 
-	Item* selectedItem;
+	Article* selectedArticle;
 	Caisse caisse_;  // Le Modèle (pourrait être un pointeur mais pas nécessaire dans ce cas).
 };
