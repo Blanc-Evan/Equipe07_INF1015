@@ -35,6 +35,7 @@ void Caisse::calculerPrix() {
 		tablePrix[0] += prix;
 		tablePrix[2] = tablePrix[0] + tablePrix[1];
 	}
+	
 }
 
 string Caisse::getPrix(const int i) const {

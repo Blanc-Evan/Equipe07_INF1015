@@ -1,6 +1,7 @@
 ﻿#pragma once
 // La Vue-Controlleur pour la caisse enregistreuse.
 // Par evan.blanc@polymtl.ca & ahmed.zghal@polymtml.ca
+// PS, on a rajouté quelques vérifications supplémentaires afin qu'il y est le moins de bug possible.
 
 #include "Caisse.hpp"
 #include "Article.hpp";
@@ -64,6 +65,11 @@ private:
 };
 
 class NotCorrectlyFilledField : public logic_error {
+public:
+	using logic_error::logic_error;
+};
+
+class ArticleNotSelected : public logic_error {
 public:
 	using logic_error::logic_error;
 };

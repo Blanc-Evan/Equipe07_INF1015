@@ -80,12 +80,24 @@ CaisseWindow::CaisseWindow(QWidget* parent) :
 				QMessageBox box;
 				box.critical(0, "Erreur en ajoutant un article", e.what());
 			}
+			catch (invalid_argument& e) {
+				QMessageBox box;
+				box.critical(0, "Erreur en ajoutant un article", "Le prix n'est pas correct");
+			}
 		});
 
 	retirerButton = new QPushButton(this);
 	retirerButton->setText("RETIRER");
 	retirerButton->setDisabled(true);
-	QObject::connect(retirerButton, &QPushButton::released, this, [&]() {retirer(); });
+	QObject::connect(retirerButton, &QPushButton::released, this, [&]() {		
+		try {
+			retirer();
+		}
+		catch (ArticleNotSelected& e) {
+			QMessageBox box;
+			box.critical(0, "Erreur en retirant un article", e.what());
+		}
+	});
 
 	resetButton = new QPushButton(this);
 	resetButton->setText("RESET");
@@ -192,12 +204,15 @@ void CaisseWindow::setPrix(QString prix) {
 void CaisseWindow::ajouter() {
 	if (description_ == "" || prix_ == "" || prix_ == "0.00") throw NotCorrectlyFilledField("Certains champs sont mal remplis");
 	cout << "ajouter du controller called";
+	auto test = stof(prix_.toStdString());
+	
 	Article* newArticle = new Article(description_.toStdString(), prix_.toStdString(), taxable_); // TODO: mettre dans le model
 	caisse_.addArticle(newArticle);
 	actualiserVue();
 }
 
 void CaisseWindow::retirer() {
+	if (selectedArticle == nullptr) throw ArticleNotSelected("Aucun article selectionné");
 	caisse_.removeArticle(selectedArticle);
 	emit retirerPressed();
 	actualiserVue();
