@@ -64,7 +64,7 @@ CaisseWindow::CaisseWindow(QWidget* parent) :
 
 	QObject::connect(descriptionEdit, &QLineEdit::textChanged, this, [&]() {setDescription(descriptionEdit->text()); });
 	QObject::connect(prixEdit, &QLineEdit::textChanged, this, [&]() {setPrix(prixEdit->text()); });
-	QObject::connect(taxableCheck, &QCheckBox::stateChanged, this, [&]() {setTaxable(taxableCheck->isChecked()); });
+	QObject::connect(taxableCheck, &QCheckBox::clicked, this, [&]() {setTaxable(taxableCheck->isChecked()); });
 
 
 	QHBoxLayout* buttonLayout = new QHBoxLayout;
@@ -93,7 +93,7 @@ CaisseWindow::CaisseWindow(QWidget* parent) :
 	listLayout->addWidget(listLabel);
 	listWidget = new QListWidget;
 	listWidget->setSortingEnabled(true);
-	QObject::connect(listWidget, &QListWidget::itemClicked, this, [&]() {selectItem(listWidget->selectedItems()); });
+	QObject::connect(listWidget, &QListWidget::itemClicked, this, [&]() { selectedArticle = new Article(listWidget->selectedItems()[0]->text().split("-")[0].toStdString(), "", false); cout << selectedArticle; });
 
 	listLayout->addWidget(listWidget);
 	listLayout->addLayout(buttonLayout);
@@ -183,15 +183,15 @@ void CaisseWindow::setPrix(QString prix) {
 
 void CaisseWindow::ajouter() {
 	cout << "ajouter du controller called";
-	Article* newArticle = new Article(description_.toStdString(), prix_.toStdString()); // TODO: mettre dans le model
+	Article* newArticle = new Article(description_.toStdString(), prix_.toStdString(), taxable_); // TODO: mettre dans le model
 	caisse_.addArticle(newArticle);
-	actualiserListe();
+	actualiserVue();
 }
 
 void CaisseWindow::retirer() {
 	caisse_.removeArticle(selectedArticle);
 	emit retirerPressed();
-	actualiserListe();
+	actualiserVue();
 }
 
 void CaisseWindow::reset() {
@@ -204,9 +204,8 @@ void CaisseWindow::reset() {
 	retirerButton->setDisabled(true);
 	resetButton->setDisabled(true);
 	emit resetPressed();
-	actualiserListe();
+	actualiserVue();
 }
-
 
 void CaisseWindow::setTaxable(bool value) {
 	if (taxable_ != value) {
@@ -215,10 +214,29 @@ void CaisseWindow::setTaxable(bool value) {
 	}
 }
 
-void CaisseWindow::actualiserListe() {
-
-}
-
-void CaisseWindow::selectItem(QList<QListWidgetItem*>) {
+void CaisseWindow::actualiserVue() {
+	listWidget->clear();
+	descriptionEdit->setText("");
+	prixEdit->setText("");
+	taxableCheck->setChecked(true);
+	for (auto&& i : caisse_.getList()) {
+		listWidget->addItem(
+			QString::fromStdString(
+				i->getDescprition() + "-" + i->getPrix()
+			)
+		);
+	}
+	caisse_.calculerPrix();
+	totalAvanTaxeEdit->setText(QString::fromStdString(caisse_.getPrix(0)));
+	totalTaxeEdit->setText(QString::fromStdString(caisse_.getPrix(1)));
+	totalEdit->setText(QString::fromStdString(caisse_.getPrix(2)));
+	if (caisse_.getList().size() != 0) {
+		retirerButton->setEnabled(true);
+		resetButton->setEnabled(true);
+	}
+	else {
+		retirerButton->setDisabled(true);
+		resetButton->setDisabled(true);
+	}
 
 }

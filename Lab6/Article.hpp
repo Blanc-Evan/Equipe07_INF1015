@@ -7,11 +7,13 @@ class Article {
 
 public:
 	Article() = default;
-	Article(string desc, string prix);
-	string getDescprition();
-	string getPrix();
+	Article(const string desc, const string prix, const bool taxable);
+	string getDescprition() const;
+	string getPrix() const;
+	bool isTaxable() const;
 
 private:
 	string description_;
 	string prix_;
+	bool taxable_;
 };

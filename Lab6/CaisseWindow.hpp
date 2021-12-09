@@ -28,7 +28,6 @@ public slots:
 	void ajouter();
 	void retirer();
 	void reset();
-	void selectItem(QList<QListWidgetItem*>);
 
 signals:
 	void descriptionChanged(QString);
@@ -40,7 +39,7 @@ signals:
 	void itemClicked(QList<QListWidgetItem*>);
 
 private:
-	void actualiserListe();
+	void actualiserVue();
 
 	QString description_;
 	QString prix_;

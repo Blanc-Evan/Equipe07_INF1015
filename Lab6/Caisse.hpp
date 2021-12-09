@@ -19,12 +19,13 @@ public slots:
 	std::list<Article*>& getList();
 	void removeArticle(Article* item);
 	void resetList();
-	float getPrixTotal() {
-		return this->prixTotal_;
-	}
+	void calculerPrix();
+	string getPrix(const int i) const;
 
 private:
 	//nous avons privilégié la list pour ca fonction remove_if (Q2 du modèle)
 	std::list<Article*> list;
-	float prixTotal_ = 0.0;
+
+	// 0:totalAvantTaxe 1:totalDesTaxes 2:totalAPayer
+	float tablePrix[3] = { 0.00, 0.00, 0.00 };
 };
