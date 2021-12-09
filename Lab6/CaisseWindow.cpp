@@ -114,7 +114,7 @@ CaisseWindow::CaisseWindow(QWidget* parent) :
 	listLayout->addWidget(listLabel);
 	listWidget = new QListWidget;
 	listWidget->setSortingEnabled(true);
-	QObject::connect(listWidget, &QListWidget::itemClicked, this, [&]() { selectedArticle = new Article(listWidget->selectedItems()[0]->text().split("-")[0].toStdString(), "", false); cout << selectedArticle; });
+	QObject::connect(listWidget, &QListWidget::itemClicked, this, [&]() { selectedArticle = make_shared<Article>(Article(listWidget->selectedItems()[0]->text().split("-")[0].toStdString(), "", false)); cout << selectedArticle; });
 
 	listLayout->addWidget(listWidget);
 	listLayout->addLayout(buttonLayout);
@@ -122,9 +122,7 @@ CaisseWindow::CaisseWindow(QWidget* parent) :
 	QFrame* horizontalLine = new QFrame;
 	horizontalLine->setFrameShape(QFrame::HLine);
 
-
 	QVBoxLayout* affichageLayout = new QVBoxLayout;
-
 
 	totalAvanTaxeLabel = new QLabel;
 	totalAvanTaxeLabel->setText("Total avant taxe");
@@ -206,7 +204,7 @@ void CaisseWindow::ajouter() {
 	cout << "ajouter du controller called";
 	auto test = stof(prix_.toStdString());
 	
-	Article* newArticle = new Article(description_.toStdString(), prix_.toStdString(), taxable_); // TODO: mettre dans le model
+	shared_ptr<Article> newArticle = make_shared<Article>(Article(description_.toStdString(), prix_.toStdString(), taxable_)); // TODO: mettre dans le model
 	caisse_.addArticle(newArticle);
 	actualiserVue();
 }

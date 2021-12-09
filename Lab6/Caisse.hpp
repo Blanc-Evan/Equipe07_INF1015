@@ -15,16 +15,16 @@ using namespace std;
 
 class Caisse : public QObject {
 public slots:
-	void addArticle(Article* item);
-	std::list<Article*>& getList();
-	void removeArticle(Article* item);
+	void addArticle(shared_ptr<Article> item);
+	std::list<shared_ptr<Article>>& getList();
+	void removeArticle(shared_ptr<Article> item);
 	void resetList();
 	void calculerPrix();
 	string getPrix(const int i) const;
 
 private:
 	//nous avons privilégié la list pour ca fonction remove_if (Q2 du modèle)
-	std::list<Article*> list;
+	std::list<shared_ptr<Article>> list;
 
 	// 0:totalAvantTaxe 1:totalDesTaxes 2:totalAPayer
 	float tablePrix[3] = { 0.00, 0.00, 0.00 };

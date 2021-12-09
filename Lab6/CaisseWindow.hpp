@@ -60,7 +60,7 @@ private:
 	QLabel* totalTaxeLabel;
 	QLabel* totalLabel;
 
-	Article* selectedArticle;
+	shared_ptr<Article> selectedArticle;
 	Caisse caisse_;  // Le Modèle (pourrait être un pointeur mais pas nécessaire dans ce cas).
 };
 

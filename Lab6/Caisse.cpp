@@ -1,15 +1,15 @@
 ﻿#include "Caisse.hpp"
 
-void Caisse::addArticle(Article* item) {
+void Caisse::addArticle(shared_ptr<Article> item) {
 	list.push_back(item);
 	cout << "item added :" + item->getDescprition() << endl;
 }
 
-std::list<Article*>& Caisse::getList(){
+std::list<shared_ptr<Article>>& Caisse::getList(){
 	return list;
 }
 
-void Caisse::removeArticle(Article* item) {
+void Caisse::removeArticle(shared_ptr<Article> item) {
 	for (auto&& i : list) {
 		if (item->getDescprition() == i->getDescprition()) {
 			list.remove(i);
