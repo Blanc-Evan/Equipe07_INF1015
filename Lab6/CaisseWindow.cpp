@@ -7,6 +7,7 @@
 #include <QLabel>
 #include <QString>
 #include <qframe.h>
+#include <qmessagebox.h>
 #include <QVariant>
 #pragma pop()
 #include <iostream>
@@ -71,7 +72,15 @@ CaisseWindow::CaisseWindow(QWidget* parent) :
 
 	ajouterButton = new QPushButton(this);
 	ajouterButton->setText("AJOUTER");
-	QObject::connect(ajouterButton, &QPushButton::released, this, [&]() {ajouter(); });
+	QObject::connect(ajouterButton, &QPushButton::released, this, [&]() {
+			try {
+				ajouter();
+			}
+			catch (NotCorrectlyFilledField& e) {
+				QMessageBox box;
+				box.critical(0, "Erreur en ajoutant un article", e.what());
+			}
+		});
 
 	retirerButton = new QPushButton(this);
 	retirerButton->setText("RETIRER");
@@ -100,7 +109,6 @@ CaisseWindow::CaisseWindow(QWidget* parent) :
 
 	QFrame* horizontalLine = new QFrame;
 	horizontalLine->setFrameShape(QFrame::HLine);
-
 
 
 	QVBoxLayout* affichageLayout = new QVBoxLayout;
@@ -182,6 +190,7 @@ void CaisseWindow::setPrix(QString prix) {
 }
 
 void CaisseWindow::ajouter() {
+	if (description_ == "" || prix_ == "" || prix_ == "0.00") throw NotCorrectlyFilledField("Certains champs sont mal remplis");
 	cout << "ajouter du controller called";
 	Article* newArticle = new Article(description_.toStdString(), prix_.toStdString(), taxable_); // TODO: mettre dans le model
 	caisse_.addArticle(newArticle);

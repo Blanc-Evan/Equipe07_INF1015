@@ -62,3 +62,8 @@ private:
 	Article* selectedArticle;
 	Caisse caisse_;  // Le Modèle (pourrait être un pointeur mais pas nécessaire dans ce cas).
 };
+
+class NotCorrectlyFilledField : public logic_error {
+public:
+	using logic_error::logic_error;
+};
