@@ -1,7 +1,7 @@
 #pragma once
 //La classe qui represente les produits que l'on manipule
 #include <string>
-
+#include <memory>
 using namespace std;
 class Article {
 
@@ -11,7 +11,7 @@ public:
 	string getDescprition() const;
 	string getPrix() const;
 	bool isTaxable() const;
-
+	bool operator==(Article& a);
 private:
 	string description_;
 	string prix_;

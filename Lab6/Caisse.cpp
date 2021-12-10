@@ -10,10 +10,17 @@ std::list<shared_ptr<Article>>& Caisse::getList(){
 }
 
 void Caisse::removeArticle(shared_ptr<Article> item) {
-	for (auto&& i : list) {
-		if (item->getDescprition() == i->getDescprition()) {
-			list.remove(i);
-			return;
+	/* PROBLEME AVEC LA SURCHARGE
+	auto it = std::find(list.begin(), list.end(), item);
+	if (it != list.end()) {
+		list.remove(*it);
+		cout << "found";
+	}
+	*/ 
+	for (auto&& i : list) { 
+		cout << i->getDescprition();
+		if (*i==*item) {
+			list.remove(i); return;
 		}
 	}
 }

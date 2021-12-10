@@ -91,6 +91,7 @@ CaisseWindow::CaisseWindow(QWidget* parent) :
 	retirerButton->setDisabled(true);
 	QObject::connect(retirerButton, &QPushButton::released, this, [&]() {		
 		try {
+			cout << "retirer";
 			retirer();
 		}
 		catch (ArticleNotSelected& e) {
@@ -210,6 +211,7 @@ void CaisseWindow::ajouter() {
 }
 
 void CaisseWindow::retirer() {
+	cout << "test";
 	if (selectedArticle == nullptr) throw ArticleNotSelected("Aucun article selectionné");
 	caisse_.removeArticle(selectedArticle);
 	emit retirerPressed();
@@ -242,16 +244,18 @@ void CaisseWindow::actualiserVue() {
 	prixEdit->setText("");
 	taxableCheck->setChecked(true);
 	for (auto&& i : caisse_.getList()) {
+		string prix = i->getPrix();
+		prix.erase(prix.find(".") + 3, prix.size());
 		listWidget->addItem(
 			QString::fromStdString(
-				i->getDescprition() + "-" + i->getPrix()
+				i->getDescprition() + "-" + prix
 			)
 		);
 	}
 	caisse_.calculerPrix();
-	totalAvanTaxeEdit->setText(QString::fromStdString(caisse_.getPrix(0)));
-	totalTaxeEdit->setText(QString::fromStdString(caisse_.getPrix(1)));
-	totalEdit->setText(QString::fromStdString(caisse_.getPrix(2)));
+	totalAvanTaxeEdit->setText(QString::fromStdString(caisse_.getPrix(0).erase(caisse_.getPrix(0).find(".") + 3, caisse_.getPrix(0).size())));
+	totalTaxeEdit->setText(QString::fromStdString(caisse_.getPrix(1).erase(caisse_.getPrix(1).find(".") + 3, caisse_.getPrix(1).size())));
+	totalEdit->setText(QString::fromStdString(caisse_.getPrix(2).erase(caisse_.getPrix(2).find(".") + 3, caisse_.getPrix(2).size())));
 	if (caisse_.getList().size() != 0) {
 		retirerButton->setEnabled(true);
 		resetButton->setEnabled(true);
