@@ -5,26 +5,24 @@
 #include <vector>
 #include "Objet.hpp"
 
-using namespace std;
-
 class Salle
 {
 public:
 	Salle() = default;
-	Salle(const string& nom, const string& description) : 
+	Salle(const std::string& nom, const std::string& description) :
 		nom_(nom),
 		description_(description)
 	{};
-	void setDirections(const shared_ptr<Salle> nord, const shared_ptr<Salle> est, const shared_ptr<Salle> sud, const shared_ptr<Salle> ouest);
+	void setDirections(const std::shared_ptr<Salle> nord, const std::shared_ptr<Salle> est, const std::shared_ptr<Salle> sud, const std::shared_ptr<Salle> ouest);
 	
-	string getNom() const;
-	string getDescription() const;
-	shared_ptr<Salle> getDirection(const char& direction) const;
-	string look() const;
+	std::string getNom() const;
+	std::string getDescription() const;
+	std::shared_ptr<Salle> getDirection(const char& direction) const;
+	std::string look() const;
 
 private:
-	string nom_;
-	string description_;
-	map<char, shared_ptr<Salle>> directions;
-	vector <shared_ptr<Objet>>objets;
+	std::string nom_;
+	std::string description_;
+	std::map<char, std::shared_ptr<Salle>> directions;
+	std::vector <std::shared_ptr<Objet>>objets;
 };

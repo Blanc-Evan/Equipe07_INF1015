@@ -8,11 +8,11 @@ class Objet
 {
 public:
 	Objet() = default;
-	Objet(const string& nom, const string& description) :nom_(nom), description_(description){};
+	Objet(const std::string& nom, const std::string& description) :nom_(nom), description_(description){};
 	void look() const;
 	void use() const;
 private:
-	string nom_;
-	string description_;
+	std::string nom_;
+	std::string description_;
 };
 

@@ -5,17 +5,21 @@
 #include <vector>
 #include "Salle.hpp"
 #include <iostream>
-using namespace std;
+
 class Game
 {
 public:
 	Game() = default;
 	void initialize();
 	void start();
-	string play();
+	std::string commande = "";
+	std::string play();
+	void execute();
+
 private:
-	shared_ptr<Salle> salleActuelle;
-	bool verification(const string& str);
-	vector<shared_ptr<Salle>> salles;
+	std::shared_ptr<Salle> salleActuelle_;
+	bool verification(const std::string& str);
+	std::vector<std::shared_ptr<Salle>> salles_;
+	std::string commande_ = "";
 };
 

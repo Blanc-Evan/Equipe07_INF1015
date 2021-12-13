@@ -1,4 +1,9 @@
-﻿#pragma region "Bibliothèques"//{
+﻿/*
+* Projet réalisé par Evan BLANC et Ahmed Zghal
+*  2079808 - 2068299
+*  créé le 9 décembre 2021
+*/
+#pragma region "Bibliothèques"//{
 
 #include <iostream>
 #include <iomanip>
@@ -13,7 +18,8 @@
 #include <gsl/span>
 #include <cppitertools/range.hpp>
 #include <cppitertools/enumerate.hpp>
-
+#include "Game.hpp"
+#include <memory>
 //#if __has_include("gtest/gtest.h")
 //#include "gtest/gtest.h"
 //#endif
@@ -54,10 +60,14 @@ using namespace gsl;
 int main(int argc, char* argv[])
 {
 	initialiserBibliothequeCours(argc, argv);
+	std::unique_ptr<Game> jeu = std::make_unique<Game>();
+	jeu->initialize();
+	std::string str = "";
+	do {
+		str = jeu->play();
+	} while (str != "exit");
 
-	// Exemple d'affichage: (si la bibliothèque est bien chargée, l'accent devrait sortir correctement et la couleur aussi)
-	cout << "Bonjour à tous!\n"
-		<< "\033[35mEn couleur!\033[0m\n";
-	// Exemple d'affichage de débogage, devrait être dans la fenêtre "Sortie" de Visual Studio:
-	cdbg << "Bonjour débogueur!\n";
+	std::cout << "Okay le jeu est terminé maintenant, vas t'en !";
+
+	// PROBLEME DE FUITES
 }
