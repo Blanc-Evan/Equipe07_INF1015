@@ -5,6 +5,8 @@
 #include <vector>
 #include "Salle.hpp"
 #include <iostream>
+#include "Objet.hpp"
+#include <functional>
 
 class Game
 {
@@ -21,5 +23,6 @@ private:
 	bool verification(const std::string& str);
 	std::vector<std::shared_ptr<Salle>> salles_;
 	std::string commande_ = "";
+	std::map<std::string, std::function<void ()>> commandes_;
 };
 

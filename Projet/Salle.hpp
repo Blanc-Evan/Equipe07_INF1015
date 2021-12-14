@@ -14,6 +14,8 @@ public:
 		description_(description)
 	{};
 	void setDirections(const std::shared_ptr<Salle> nord, const std::shared_ptr<Salle> est, const std::shared_ptr<Salle> sud, const std::shared_ptr<Salle> ouest);
+	void setDirection(const char& direction, const std::shared_ptr<Salle> s);
+	void ajouterObjet(std::shared_ptr<ObjetInterractif> objet);
 	
 	std::string getNom() const;
 	std::string getDescription() const;
@@ -23,6 +25,6 @@ public:
 private:
 	std::string nom_;
 	std::string description_;
-	std::map<char, std::shared_ptr<Salle>> directions;
-	std::vector <std::shared_ptr<Objet>>objets;
+	std::map<char, std::shared_ptr<Salle>> directions_;
+	std::vector <std::shared_ptr<ObjetInterractif>>objets_;
 };

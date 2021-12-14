@@ -70,4 +70,5 @@ int main(int argc, char* argv[])
 	std::cout << "Okay le jeu est terminé maintenant, vas t'en !";
 
 	// PROBLEME DE FUITES
+	// PROBLEME D'INCLUDE Objet.cpp (voir erreur de build)
 }
