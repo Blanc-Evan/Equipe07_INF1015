@@ -7,22 +7,23 @@
 #include <iostream>
 #include "Objet.hpp"
 #include <functional>
+#include "GameController.hpp"
 
-class Game
+class GameView
 {
 public:
-	Game() = default;
+	GameView(std::unique_ptr<GameController> controller) : controller_(move(controller)) { initialize(); };
 	void initialize();
-	void start();
 	std::string commande = "";
 	std::string play();
 	void execute();
 
 private:
-	std::shared_ptr<Salle> salleActuelle_;
 	bool verification(const std::string& str);
 	std::vector<std::shared_ptr<Salle>> salles_;
 	std::string commande_ = "";
-	std::map<std::string, std::function<void ()>> commandes_;
+	std::unique_ptr<GameController> controller_;
+
 };
+
 

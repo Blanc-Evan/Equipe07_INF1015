@@ -38,7 +38,7 @@ std::string Salle::look() const {
     if (getDirection('S') != nullptr) str += directions_.at('S')->nom_ += " est au Sud (S) \n";
     if (getDirection('O') != nullptr) str += directions_.at('O')->nom_ += " est à l'Ouest (O) \n";
 
-    for (auto objet : objets_) 
+    for (auto objet : objets_)
         str += objet->nom_ + "\n";
 
     return str;

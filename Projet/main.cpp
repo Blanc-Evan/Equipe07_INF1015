@@ -18,8 +18,9 @@
 #include <gsl/span>
 #include <cppitertools/range.hpp>
 #include <cppitertools/enumerate.hpp>
-#include "Game.hpp"
+#include "GameController.hpp"
 #include <memory>
+#include "GameView.hpp"
 //#if __has_include("gtest/gtest.h")
 //#include "gtest/gtest.h"
 //#endif
@@ -60,11 +61,11 @@ using namespace gsl;
 int main(int argc, char* argv[])
 {
 	initialiserBibliothequeCours(argc, argv);
-	std::unique_ptr<Game> jeu = std::make_unique<Game>();
-	jeu->initialize();
+	std::unique_ptr<GameController> controller = std::make_unique<GameController>();
+	std::unique_ptr<GameView> vue = std::make_unique<GameView>(move(controller));
 	std::string str = "";
 	do {
-		str = jeu->play();
+		str = vue->play();
 	} while (str != "exit");
 
 	std::cout << "Okay le jeu est terminé maintenant, vas t'en !";
