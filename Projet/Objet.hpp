@@ -8,33 +8,49 @@
 class ObjetInterractif
 {
 public:
-	ObjetInterractif(const std::string& nom, const std::string& description, const std::string& action) : nom_(nom), description_(description), action_(action) {};
-	void look() const;
-	void use() const;
+	ObjetInterractif(const std::string& nom, const std::string& description, const std::string& action, const std::string& salleOuSeDerouleLaction) :
+		nom_(nom),
+		description_(description),
+		action_(action),
+		salleOuSeDerouleLaction_(salleOuSeDerouleLaction)
+	{};
+
+	virtual std::string look() const;
+	virtual std::pair < std::string, std::pair<std::string, char>> use() const;
+	void setMotCles(const std::vector<std::string>& motsCles) { motsCles_ = motsCles; }
 	
+	std::string getNom() const { return nom_; }
+	std::string getDescription() const { return description_; }
+	std::string getAction() const { return action_; }
+	std::string getSalleOuSeDerouleLaction() const { return salleOuSeDerouleLaction_; }
+
+private:
 	std::string nom_;
 	std::string description_;
 	std::string action_;
-
+	std::string salleOuSeDerouleLaction_;
+	std::vector<std::string> motsCles_;
 };
 
-class ObjetInterratifPourDeverouillerZone : public ObjetInterractif {
+class ObjetInterractifPourDeverouillerZone : public ObjetInterractif {
 public:
-	ObjetInterratifPourDeverouillerZone(const std::string& nom, const std::string& description, const char& direction) : ObjetInterractif(nom, description, ""), direction_(direction) {}
-
-	void use();
-
-
+	ObjetInterractifPourDeverouillerZone(const std::string& nom, const std::string& description, const std::string& action, const std::pair<std::string, char>& salleADeverouiller, const std::string& salleOuSeDerouleLaction) :
+		ObjetInterractif(nom, description, action, salleOuSeDerouleLaction),
+		salleADeverouiller_(salleADeverouiller)
+	{}
+	std::pair < std::string, std::pair<std::string, char>> use() const;
 private:
-	char direction_;
+	std::pair<std::string, char> salleADeverouiller_;
 	bool used_ = false;
 };
 
-class ObjetInterratifPourDeverouillerObjet : public ObjetInterractif {
-	ObjetInterratifPourDeverouillerObjet(const std::string& nom, const std::string& description, const std::shared_ptr<ObjetInterractif> objetADeverouiller) : ObjetInterractif(nom, description, ""), objetADeverouiller_(objetADeverouiller) {}
-
-	void use();
-
+class ObjetInterractifPourDeverouillerObjet : public ObjetInterractif {
+public:
+	ObjetInterractifPourDeverouillerObjet(const std::string& nom, const std::string& description, const std::string& action, const std::shared_ptr<ObjetInterractif> objetADeverouiller, const std::string& salleOuSeDerouleLaction) :
+		ObjetInterractif(nom, description, action, salleOuSeDerouleLaction),
+		objetADeverouiller_(objetADeverouiller)
+	{}
+	std::pair < std::string, std::pair<std::string, char>> use() const;
 private:
 	std::shared_ptr<ObjetInterractif> objetADeverouiller_;
 	bool used_ = false;

@@ -19,12 +19,13 @@ public:
 
 	std::string getNom() const;
 	std::string getDescription() const;
-	std::shared_ptr<Salle> getDirection(const char& direction) const;
+	std::shared_ptr<Salle> getDirection(const char direction) const;
+	std::map <std::string, std::shared_ptr<ObjetInterractif>> getObjets();
 	std::string look() const;
 
 private:
 	std::string nom_;
 	std::string description_;
 	std::map<char, std::shared_ptr<Salle>> directions_;
-	std::vector <std::shared_ptr<ObjetInterractif>>objets_;
+	std::map <std::string, std::shared_ptr<ObjetInterractif>>objets_;
 };
