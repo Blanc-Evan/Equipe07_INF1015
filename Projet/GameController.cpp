@@ -47,33 +47,29 @@ void GameController::execute(std::string commande) {
 		bool found = false;
 		std::string instruction = commande.substr(0, commande.find(' '));
 		commande.replace(0, commande.find(' ') + 1, "");
-		if (instruction == "use") {
-			for (auto&& objet : salleActuelle_->getObjets()) {
-				if (objet.second->getNom() == commande) {
+		for (auto&& objet : salleActuelle_->getObjets()) {
+			if (objet.second->getNom() == commande) {
+				if (instruction == "use") {
 					auto result = objet.second->use();
 					if (result.second.second != ' ') { // c'est un objet qui deverouille une salle
 						for (auto&& s : salles_) {
 							if (s.first == result.first) {
-								s.second->setDirection(result.second.second, salles_[result.second.first]);
-							}
-						}
-					}
-					else { // c'est un objet qui deverouille un objet
-						for (auto&& s : salles_) {
-							if (s.first == result.first) {
-								s.second->ajouterObjet(objets_[result.second.first]);
+								if (result.second.second != ' ') {
+									s.second->setDirection(result.second.second, salles_[result.second.first]);
+								}
+								else { // c'est un objet qui deverouille un objet 
+									s.second->ajouterObjet(objets_[result.second.first]);
+								}
 							}
 						}
 					}
 				}
-			}
-		} else if (instruction == "look") {
-			for (auto&& objet : salleActuelle_->getObjets()) {
-				if (objet.second->getNom() == commande) {
+				else if (instruction == "look") {
 					std::cout << objet.second->look() << std::endl;
 				}
+				else std::cout << "Je ne connais pas cette commande" << std::endl;
 			}
-		} else std::cout << "Je ne connais pas cette commande" << std::endl;
+		}
 	}
 }
 
