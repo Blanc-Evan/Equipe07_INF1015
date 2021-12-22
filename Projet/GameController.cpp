@@ -42,16 +42,15 @@ void GameController::initialize() {
 void GameController::execute(std::string commande) {
 	if (commande.size() <= 4) // La commande est bonne puisque déjà vérifée dans GameView::verification, donc si c'est une commande pour salles, size <= 4
 		commandes_[commande]();
-
 	else { // c'est une commande pour objets
 		bool found = false;
 		std::string instruction = commande.substr(0, commande.find(' '));
 		commande.replace(0, commande.find(' ') + 1, "");
 		for (auto&& objet : salleActuelle_->getObjets()) {
-			if (objet.second->getNom() == commande) {
-				if (instruction == "use") {
-					auto result = objet.second->use();
-					if (result.second.second != ' ') { // c'est un objet qui deverouille une salle
+			for (auto&& mot : objet.second->getMotCles()) {
+				if (commande.contains(mot)) {
+					if (instruction == "use") {
+						auto result = objet.second->use();
 						for (auto&& s : salles_) {
 							if (s.first == result.first) {
 								if (result.second.second != ' ') {
@@ -61,13 +60,14 @@ void GameController::execute(std::string commande) {
 									s.second->ajouterObjet(objets_[result.second.first]);
 								}
 							}
-						}
+						}	
 					}
+					else if (instruction == "look") {
+						std::cout << objet.second->look() << std::endl;
+					}
+					else std::cout << "Je ne connais pas cette commande" << std::endl;
+
 				}
-				else if (instruction == "look") {
-					std::cout << objet.second->look() << std::endl;
-				}
-				else std::cout << "Je ne connais pas cette commande" << std::endl;
 			}
 		}
 	}

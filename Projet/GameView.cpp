@@ -1,5 +1,4 @@
 #include "GameView.hpp"
-//TODO refactor into fct
 void GameView::initialize() {
 
 	std::shared_ptr<Salle> entree = std::make_shared<Salle>("Entrée", "Vous êtes dans l'entrée. Il y a un tapis sur le sol.\n");
@@ -19,9 +18,15 @@ void GameView::initialize() {
 	std::shared_ptr<ObjetInterractif> interrupteur = std::make_shared<ObjetInterractif>("Interrupteur", "Vous voyez un interrupteur au mur", "Vous actionnez l'interrupteur, la lumière s'allume", "");
 	std::shared_ptr<ObjetInterractif> boutonRouge = std::make_shared<ObjetInterractifPourDeverouillerZone>("Bouton rouge", "Vous voyez un bouton rouge", "Vous appuyez sur le bouton, la salle 'R' est connectée", std::make_pair(salleR->getNom(), 'E'), couloir->getNom());
 	std::shared_ptr<ObjetInterractif> toucheVerte = std::make_shared<ObjetInterractif>("Touche Verte", "Une touche de couleur verte, elle à l'air cassée", "[action à ajouter]", "");
-	std::shared_ptr<ObjetInterractif> piano = std::make_shared<ObjetInterractifPourDeverouillerObjet>("Piano", "Un vieux piano d'entrée de gamme Yamaha avec 61 touches, on dirait un objet des année 90", "Une touche verte tombe pendant que vous jouez", toucheVerte, salon->getNom());
-	std::shared_ptr<ObjetInterractif> chaussures = std::make_shared<ObjetInterractif>("Chaussures", "Une paire de chaussures pour homme, elle sent particulièrement mauvais", "Vous les rangez dans le placard", "");
-	
+	std::shared_ptr<ObjetInterractif> piano = std::make_shared<ObjetInterractifPourDeverouillerObjet>("Piano Electronique d'entrée de gamme", "Un vieux piano d'entrée de gamme Yamaha avec 61 touches, on dirait un objet des année 90", "Une touche verte tombe pendant que vous jouez", toucheVerte, salon->getNom());
+	std::shared_ptr<ObjetInterractif> chaussures = std::make_shared<ObjetInterractif>("Paire de Chaussures", "Une paire de chaussures pour homme, elle sent particulièrement mauvais", "Vous les rangez dans le placard", "");
+
+	interrupteur->setMotCles("Interrupteur");
+	boutonRouge->setMotCles("Bouton,Rouge");
+	toucheVerte->setMotCles("Touche,Verte");
+	piano->setMotCles("Piano,Electronique");
+	chaussures->setMotCles("Chaussures,Paire");
+
 	couloir->ajouterObjet(interrupteur);
 	salon->ajouterObjet(boutonRouge);
 	salon->ajouterObjet(piano);
@@ -50,13 +55,12 @@ void GameView::execute(std::string commande) {
 	controller_->execute(commande);
 }
 
-
 std::string GameView::play() {
 	bool correct = false;
 	std::string commande;
 	do {
 		std::cout << ">";
-	
+
 		std::getline(std::cin, commande);
 
 		if (commande == "exit") return commande;
@@ -67,7 +71,6 @@ std::string GameView::play() {
 	execute(commande);
 	return commande;
 }
-
 
 bool GameView::verification(const std::string& str) {
 	std::string commande = str.substr(0, str.find(' '));

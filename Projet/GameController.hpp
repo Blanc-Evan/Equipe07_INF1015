@@ -14,6 +14,7 @@ class GameController
 {
 public:
 	GameController() { initialize(); };
+
 	void initialize();
 	void execute(std::string commande);
 	std::map<std::string, std::function<void()>>& getCommandes();
@@ -29,4 +30,3 @@ private:
 	std::map<std::string, std::shared_ptr<ObjetInterractif>> objets_;
 	std::map<std::string, std::function<void()>> commandes_;
 };
-

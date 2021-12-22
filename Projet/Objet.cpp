@@ -38,3 +38,14 @@ std::pair <std::string, std::pair<std::string, char>> ObjetInterractifPourDevero
 	}
 	return std::make_pair(getSalleOuSeDerouleLaction(), std::make_pair(objetADeverouiller_->getNom(), ' '));
 }
+
+void ObjetInterractif::setMotCles(const std::string& motsCles) {
+	std::string mots = motsCles;
+	do {
+		std::string mot = mots.substr(0, mots.find(','));
+		mots.replace(0, mots.find(',') + 1, "");
+		this->motsCles_.push_back(mot);
+	} while (mots.contains(','));
+
+	this->motsCles_.push_back(motsCles);
+}

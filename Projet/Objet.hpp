@@ -4,6 +4,8 @@
 #include <memory>
 #include <vector>
 #include <iostream>
+#include <ranges>
+#include <string_view>
 
 class ObjetInterractif
 {
@@ -17,11 +19,12 @@ public:
 
 	virtual std::string look() const;
 	virtual std::pair < std::string, std::pair<std::string, char>> use() const;
-	void setMotCles(const std::vector<std::string>& motsCles) { motsCles_ = motsCles; }
+	void setMotCles(const std::string& motsCles);
 	
 	std::string getNom() const { return nom_; }
 	std::string getDescription() const { return description_; }
 	std::string getAction() const { return action_; }
+	std::vector<std::string>& getMotCles() { return motsCles_ ;}
 	std::string getSalleOuSeDerouleLaction() const { return salleOuSeDerouleLaction_; }
 
 private:

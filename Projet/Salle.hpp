@@ -8,11 +8,12 @@
 class Salle
 {
 public:
-	Salle() = default;
+	
 	Salle(const std::string& nom, const std::string& description) :
 		nom_(nom),
 		description_(description)
 	{};
+
 	void setDirections(const std::shared_ptr<Salle> nord, const std::shared_ptr<Salle> est, const std::shared_ptr<Salle> sud, const std::shared_ptr<Salle> ouest);
 	void setDirection(const char& direction, const std::shared_ptr<Salle> s);
 	void ajouterObjet(std::shared_ptr<ObjetInterractif> objet);
